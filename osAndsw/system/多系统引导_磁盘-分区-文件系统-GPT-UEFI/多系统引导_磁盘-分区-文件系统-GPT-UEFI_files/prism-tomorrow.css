@@ -1,0 +1,161 @@
+.mce-content-body code[data-mce-selected=inline-boundary]{
+  background-color: transparent;
+}
+code[class*="language-"],code,
+pre,
+:not(pre) > code[class*="language-"],
+pre[class*="language-"],
+pre > code {
+  color: #ccc;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  text-shadow:none;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  background: #2d2d2d;
+}
+/* Code blocks */
+pre[class*="language-"],pre {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+:not(pre) > code{
+  color: #f08d49;
+  margin: 0px 2px;
+  padding: 2px 4px;
+  white-space: normal;
+  background-color: rgb(248,248,248);
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata,
+.hljs-comment{
+  color: #999;
+}
+.token.punctuation,
+.hljs-subst {
+  color: #ccc;
+}
+.token.tag,
+.token.attr-name,
+.token.namespace,
+.token.deleted,
+.hljs-literal,
+.hljs-tag .hljs-attr,
+.hljs-template-variable,
+.hljs-variable,
+.hljs-attribute,
+.hljs-name,
+.hljs-tag,
+.hljs-deletion {
+  color: #e2777a;
+}
+.token.function-name {
+  color: #6196cc;
+}
+.token.boolean,
+.token.number,
+.token.function,
+.hljs-number,
+.hljs-built_in {
+  color: #f08d49;
+}
+.token.property,
+.token.class-name,
+.token.constant,
+.token.symbol,
+.hljs-bullet,
+.hljs-symbol {
+  color: #f8c555;
+}
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword,
+.token.builtin,
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #cc99cd;
+}
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable,
+.hljs-doctag,
+.hljs-string {
+  color: #7ec699;
+  background-color: transparent;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.hljs-link,
+.hljs-regexp {
+  color: #67cdcc;
+  background: none;
+}
+.token.important,
+.token.bold,
+.hljs-quote {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+.token.entity {
+  cursor: help;
+}
+.token.inserted {
+  color: green;
+}
+.hljs-section,
+.hljs-selector-id,
+.hljs-title{
+  color:#f08d49;
+}
+.hljs-class .hljs-title,
+.hljs-type{
+  color: #f8c555;
+}
+.hljs-meta{
+  color:#999;font-weight:700
+}
+.hljs-addition{
+  background:#dfd
+}
+.hljs-emphasis{
+  font-style:italic
+}
+.hljs-strong{
+  font-weight:700
+}
+.language-css .token.string,
+.style .token.string{
+  color: #7ec699;
+  background-color: transparent;
+}

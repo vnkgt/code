@@ -1,0 +1,645 @@
+function formatDataCodeFn(data){
+	if(typeof data === 'string'){
+		try{
+			data = JSON.parse(data);
+        }catch(e){
+        }
+    }
+	if(data && typeof data.code !== 'undefined'){
+		return data;
+    }
+    if(data && typeof data.error_code !== 'undefined'){
+		data.code = data.error_code;
+        return data;
+    }
+    return data;
+}
+window.developerErrMsg = {
+    "DEV.0224": {
+        errorType: 'succeed',
+        errorMsgTitle: "报名提交成功",
+        errorMsgMsg: "您已成功提交报名申请,请耐心等待工作人员审核，审核结果将以短信形式通知，请注意查收",
+    },
+    "DEV.0213": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "报名人数已满",
+    },
+    "DEV.0212": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "您已报名该活动，请勿重复报名",
+    },
+    "DEV.0210": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "很抱歉，活动已取消",
+    },
+    "DEV.0209": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "很抱歉，报名已结束",
+    },
+    "DEV.0208": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "很抱歉，活动已取消",
+    },
+    "DEV.0201": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "活动不存在",
+    },
+    "DEV.0216": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "很抱歉，大赛尚未开始",
+    },
+    "DEV.0217": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "很抱歉，大赛已经结束",
+    },
+    "DEV.0218": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "很抱歉，报名尚未开始",
+    },
+    "DEV.0219": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "很抱歉，报名已经结束",
+    },
+    "DEV.0220": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "报名人数已满",
+    },
+    "DEV.0221": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "大赛已经下线",
+    },
+    "DEV.0222": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "您已报过该大赛，请勿重复报名",
+    },
+    "DEV.0223": {
+        errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "报名失败",
+    },
+    "DEV.0262":{
+		errorType: 'failed',
+        errorMsgTitle: "报名失败",
+        errorMsgMsg: "请先勾选协议",
+    },
+    "DEV.0272":{
+    	errorType: 'failed',
+        errorMsgTitle: "提示",
+        errorMsgMsg: "您本次报名发生意外系统冲突，请重新输入报名资料",
+    },
+    "DEV.0024":{
+    	errorType: 'failed',
+        errorMsgTitle: "提示",
+        errorMsgMsg: "咦，数据开小差了，去别处转转",
+        blogTooLarge: {
+            errorType: 'failed',
+            errorMsgTitle: "提示",
+            errorMsgMsg: "抱歉！您的正文内容过长，请删减后再行提交！",
+        },
+        signUp:{
+            errorType: 'failed',
+            errorMsgTitle: "提示",
+            errorMsgMsg: "您本次报名发生意外系统冲突，请重新输入报名资料",
+	}
+    },
+     "DEV.0226":{
+        errorType: 'failed',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，当前用户不存在，请刷新重试！",
+    },
+    "DEV.0227":{
+        errorType: 'failed',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "昵称长度不超过10个汉字或20个英文字符",
+    },
+    "DEV.0229":{
+        errorType: 'failed',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "昵称3个月内只能修改一次",
+    },
+    "DEV.0230":{
+        errorType: 'failed',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "该昵称已存在",
+    },
+    "DEV.0232":{
+        errorType: 'failed',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "该昵称已存在",
+    },
+    "DEV.0107":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "您没有权限执行当前操作！",
+		writeBlog:{
+            errorType: 'warning',
+            errorMsgTitle: "温馨提示",
+            errorMsgMsg: "您没有写博客权限！3秒后自动跳转到云社区首页",
+        },
+    },
+    "DEV.0127":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "您尚未绑定手机号，请绑定后再进行评论！",
+    },
+    "DEV.0110":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，该博客已被删除，操作失败",
+    },
+    "DEV.0111":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "正在审核中的博客不能操作！",
+    },
+    "DEV.0406":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "当前评论不存在",
+    },
+    "DEV.0134":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "附件非当前账号上传，请重新上传附件后再提交",
+    },
+   "DEV.0421":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "您的建议已经预审通过，不支持修改",
+    },
+   "DEV.0404":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "建议不存在",
+    },
+   "DEV.0405":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "不是作者本人，无权修改",
+	editSuggest:{
+            errorType: 'warning',
+            errorMsgTitle: "温馨提示",
+            errorMsgMsg: "非本人无权操作",
+        }
+    },
+   "DEV.0414":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "您设置的标签系统不支持，请重新设置标签。",
+    },
+    "DEV.0420":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "您没有权限执行当前操作",
+    },
+    "DEV.0128":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "您的内容中含网络图片，请将网络图片单张复制粘贴。详细操作请见"+'<a href="https://bbs.huaweicloud.com/forum/thread-38393-1-1.html" style="color: #2d56b1;text-decoration: underline" target="_blank">指导</a>'+"。",
+    },
+    "DEV.0121":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "视频已下线或已删除！",
+    },
+    "activityTimeoutError":{
+    	errorType: 'warning',
+        errorMsgTitle: "系统提示",
+        errorMsgMsg: "活动太火爆了，当前报名人数太多，请稍后重试",
+    },
+    "sysError":{
+    	errorType: 'failed',
+        errorMsgTitle: "操作失败",
+        errorMsgMsg: "咦，数据开小差了，去别处转转",
+    },
+    "displayedError":{
+    	errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉！您的内容中有部分内容未通过审核，请联系cloudbbs@huaweicloud.com处理。",
+    },
+    "suggestionMbEdit":{
+    	errorType: 'warning',
+	errorMsgTitle: "温馨提示",
+	errorMsgMsg: "不支持修改，请登录PC端修改",
+    },
+    "suggestionError":{
+    	errorType: 'warning',
+	errorMsgTitle: "温馨提示",
+	errorMsgMsg: "系统异常！3秒后自动跳转到云声首页",
+    },
+    "DEV.0248":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "系统检测到您是IAM用户登录，当前业务不支持IAM用户参与，请使用华为云账号登录。",
+    },
+    "DEV.0130":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "草稿箱已满，无法保存！确认放弃本次编辑内容，并加载对应草稿吗?",
+    },
+    "DEV.0131":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "草稿ID与用户不匹配，请本地保存后刷新重试",
+    },
+    "DEV.0132":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，您有一条草稿正在保存，请稍候再试。",
+    },
+    "DEV.0135":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "标题，正文不能同时为空！",
+    },
+    "DEV.0026":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "标题，正文不能同时为空！",
+    },
+    "DEV.0403":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "用户未登录，请登陆后再保存！",
+	mvpApply:{
+            errorType: 'warning',
+            errorMsgTitle: "温馨提示",
+            errorMsgMsg: "抱歉，当前登录失效，请自行保存内容后重新登录！",
+        }
+    },
+     "DEV.0401":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "用户不存在",
+    },
+    "DEV.0001":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "系统异常！",
+    },
+    "DEV.0122":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "您下载次数过多，请稍后重试！",
+    },
+    "DEV.0118":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "未找到评论的相关信息",
+    },
+     "DEV.0405":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "只有评论用户本人才能编辑评论！",
+		editSuggest:{
+            errorType: 'warning',
+            errorMsgTitle: "温馨提示",
+            errorMsgMsg: "非本人无权操作",
+        }
+    },
+     "DEV.0116":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，该博客未开启评论功能",
+    },
+     "DEV.0120":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "只有评论用户本人才能编辑评论！",
+    },
+    "DEV.0227":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "昵称长度不超过10个汉字或20个英文字符。设置后3个月内不可修改！",
+    },
+     "DEV.0228":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "修改简介失败",
+    },
+      "DEV.0229":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "昵称三个月内只能修改一次",
+    },
+      "DEV.0231":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "只可以选择5个兴趣爱好！",
+    },
+      "DEV.0232":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "该昵称已存在",
+    },
+    "DEV.0282":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "您已报名，请勿重复报名。",
+    },
+      "DEV.0422":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "请勿重复提交！",
+    },
+      "DEV.0415":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "建议不存在！",
+    },
+      "DEV.0267":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，您没报名该活动",
+    },
+      "DEV.0276":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "裂变时间发生改变",
+    },
+      "CBC.0303":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，服务正在恢复中，请您稍后再试",
+    },
+     "DEV.0136":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，您已经达到每天发表内容数上限，请明天再试。",
+        "writeBlog":{
+            errorType: 'warning',
+            errorMsgTitle: "温馨提示",
+            errorMsgMsg: "抱歉，您已经达到每天发表内容数上限，请注意保存草稿。",
+        },
+    },
+    "DEV.0138":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，您发表过于频繁，稍后重试。",
+        writeBlog:{
+            errorType: 'warning',
+            errorMsgTitle: "温馨提示",
+            errorMsgMsg: "抱歉，您发表过于频繁，请注意保存内容，稍后重试。",
+        },
+    },
+	"DEV.0137":{
+		errorType: 'warning',
+		errorMsgTitle: "温馨提示",
+		errorMsgMsg: "抱歉，社区系统维护中，暂不支持修改",
+	},
+    "CBC.4008":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "验证码已失效，请重新获取验证码！",
+	},
+    "CBC.4009":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "验证码校验次数超过限制！",
+    },
+    "CBC.4010":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "请输入正确的验证码！",
+    },
+     "DEV.0416":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉！暂不支持设置表情，请重新设置！",
+    },
+     "DEV.0407":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "缩略图文件不存在，请重新选择",
+    },
+    "verifyCodeSysEroor":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "暂不支持修改手机号码！",
+    },
+    "DEV.0225":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，您尚未完成实名认证！",
+    },
+    "DEV.0234":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，您已在申请流程中，请耐心等候申请结果！",
+    },
+    "DEV.0235":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，您已经是MVP，无需重复提交申请！",
+    },
+    "DEV.0264":{
+        errorType: 'warning',
+        errorMsgTitle: "温馨提示",
+        errorMsgMsg: "抱歉，您尚未申请过MVP，请重新提交申请！",
+    },
+}
+
+/**
+ * 开发者中心弹框定制
+ * 调用方法：var developerModal = new DeveloperModal(options);
+ * options:{
+ *      modalId:string,
+ *      modalContainer:string,
+ *      type:string,//msgModal/optModal
+ *      errorMsg:{
+ *          errorMsgCode:string,
+ *          errorType:string,
+ *          errorMsgTitle:string,
+ *          errorMsgMsg:string,
+ *      },
+ *      confirmBtn:string,
+ *      cancelBtn:string,
+ *      confirm:function,
+ *      cancel:function
+ * }
+ * options参数配置如下：
+ *      参数名          参数说明                                    默认值           必填
+ *      modalId         弹框id                                     无               是
+ *      modalContainer  弹框父元素,jquery dom对象                   $("body")        否
+ *      type            弹框模板：                                  msgModal         否
+ *                          msgModal（确定一个按钮）    
+ *                          optModal（确定和取消两个按钮）   
+ *      errorMsg        errorMsgCode   提示语状态码
+ *                          从developerErrMsg里匹配                 DEV.0000         优先读取  
+ *                      errorType      提示语弹框类型                succeed          在errorMsgCode未配置的时候读取
+ *                          succeed(成功)warning(提示)error(异常)   
+ *                      errorMsgTitle  提示语弹框标题               无                在errorMsgCode未配置的时候读取
+ *                      errorMsgMsg    提示语弹框提示信息            无               在errorMsgCode未配置的时候读取   
+ *      confirmBtn      确定按钮文案                                确定              否
+ *      cancelBtn       取消按钮文案                                取消              否
+ *      confirm         点击确认后回调                              function(){}      否
+ *      cancel          点击取消后回调                              function(){}      否
+ * 
+ * 函数api:
+ *      developerModal.show()弹框展示
+ *      developerModal.close()弹框隐藏
+ *      developerModal.setMsg(errorMsg)更新弹框提示语
+ *      developerModal.setModalType(modalType)更新弹框模板
+ *      developerModal.setConfirmFn(callbackFn)更新确认按钮方法
+ *      developerModal.setCancelFn(callbackFn)更新确认取消方法
+ *	developerModal.setModalOpt(modalOpt)更新弹框内容
+ */
+
+
+!function($,developerErrMsg){
+    var modalDefaultOptions = {
+        modalContainer:$("body"),
+        modalId:'',
+        type:'msgModal',
+        errorMsg:{
+            errorMsgCode:'',
+            errorType:'',
+            errorMsgTitle:'',
+            errorMsgMsg:'',
+        },
+        confirmBtn:'确定',
+        cancelBtn:'取消',
+        confirm:function(){
+        },
+        cancel:function(){
+        }
+    }
+    var defaultModalTypes = ['msgModal','optModal'];
+    function initModalDom(options){
+        if(!options.modalId){
+            throw new Error('弹框id不能为空');
+        }
+        var modalOptions = {};
+        if(developerErrMsg && options.errorMsg.errorMsgCode && developerErrMsg[options.errorMsg.errorMsgCode]){
+            modalOptions = developerErrMsg[options.errorMsg.errorMsgCode];
+        }else{
+            modalOptions = options.errorMsg;
+        }
+        var modalTypeDom={
+            optModal:
+            '<div class="modal-detail-block opeartion-block">'+
+                '<h3 class="modal-title '+modalOptions.errorType+'">'+modalOptions.errorMsgTitle+'</h3>'+
+                '<div class="warning-box">'+
+                    '<div class="msg-block">'+
+                        '<span class="warning-detail">'+modalOptions.errorMsgMsg+'</span>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="btn-block">'+
+                    '<a class="developer-btns btn-red btn-small confirm-btn">'+
+                        options.confirmBtn +
+                    '</a>'+
+                    '<a class="developer-btns btn-white btn-small cancel-btn">'+
+                        options.cancelBtn +
+                    '</a>'+
+                '</div>'+
+                '<i class="icon-delete"></i>'+
+            '</div>',
+            msgModal:
+            '<div class="modal-detail-block message-block">'+
+                '<h3 class="modal-title '+modalOptions.errorType+'">'+modalOptions.errorMsgTitle+'</h3>'+
+                '<div class="warning-box">'+
+                    '<div class="msg-block">'+
+                        '<span class="warning-detail">'+modalOptions.errorMsgMsg+'</span>'+
+                    '</div>'+
+                '</div>'+
+                '<div class="btn-block">'+
+                    '<a class="developer-btns btn-red btn-small confirm-btn">'+
+                        options.confirmBtn +
+                    '</a>'+
+                '</div>'+
+                '<i class="icon-delete"></i>'+
+            '</div>',
+        }
+        return '<div id="'+options.modalId+'">'+modalTypeDom[options.type]+'</div>'
+    }
+
+    function DeveloperModal(options){
+        var _this = this;
+        _this.options = $.extend({},modalDefaultOptions,options);
+        _this.container = _this.options.modalContainer.length?_this.options.modalContainer:$("body");
+        _this.modalId = _this.options.modalId;
+        _this.init();
+    }
+
+    DeveloperModal.prototype.init = function(){
+        var _this = this;
+        modalType = _this.options.type || 'msgModal';
+        var $modalCover = _this.container.find(".developer-modal.modal-cover");
+        if(!$modalCover.length){
+            _this.container.append('<div class="developer-modal modal-cover"></div>');
+            $modalCover = _this.container.find(".developer-modal.modal-cover");
+        }
+        if(!$("#"+_this.options.modalId).length){
+            $modalCover.append(initModalDom(_this.options));
+        }else{
+            $("#"+_this.options.modalId).remove();
+            $modalCover.append(initModalDom(_this.options));
+        }
+        $("#"+_this.options.modalId).on("click",".confirm-btn",function(){
+            _this.close();
+            _this.options.confirm();
+            _this.options.confirm = function(){};
+            _this.options.cancel = function(){};
+        });
+        $("#"+_this.options.modalId).on("click",".cancel-btn,.icon-delete",function(){
+            _this.close();
+            _this.options.cancel();
+            _this.options.confirm = function(){};
+            _this.options.cancel = function(){};
+        });
+    }
+    
+    DeveloperModal.prototype.show = function(){
+        var _this = this;
+        _this.init();
+        _this.container.find(".developer-modal.modal-cover").addClass("show");
+        $("#"+_this.options.modalId).find(".modal-detail-block").fadeIn();
+        return _this;
+    }
+    DeveloperModal.prototype.close = function(){
+        var _this = this;
+        $("#"+_this.options.modalId).find(".modal-detail-block").fadeOut();
+        _this.container.find(".developer-modal.modal-cover").removeClass("show");
+        return _this;
+    }
+
+    DeveloperModal.prototype.setMsg = function(errOptions){
+        var _this = this,errorMsg = JSON.parse(JSON.stringify(_this.options.errorMsg));
+        _this.options.errorMsg = $.extend({},errorMsg,errOptions);
+        return _this;
+    }
+    DeveloperModal.prototype.setModalType = function(modalType){
+        var _this = this;
+        modalType && defaultModalTypes.indexOf(modalType)>-1?_this.options.type=modalType:'';
+        return _this;
+    }
+    DeveloperModal.prototype.setModalOpt = function(modalOpt){
+        var _this = this;
+        modalOpt?_this.options = $.extend({},_this.options,modalOpt):'';
+        return _this;
+    }
+    DeveloperModal.prototype.setConfirmFn = function(callbackFn){
+        var _this = this;
+        _this.options.confirm = callbackFn;
+        return _this;
+    }
+    DeveloperModal.prototype.setCancelFn = function(callbackFn){
+        var _this = this;
+        _this.options.cancel = callbackFn;
+        return _this;
+    }
+    window.DeveloperModal = DeveloperModal;
+}(jQuery,developerErrMsg);

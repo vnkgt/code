@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax(异步javascript)异步局部刷新测试html文件</title>
+    //Ajax测试部分
+    {% load static %}
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            $("#btnOK").click(function () {
+                //1.获取用户名和密码
+                username = $("#username").val()
+                password = $("#password").val()
+                //2.发起ajax的post请求(请求url：/login_ajax_check，携带用户名和密码)
+                $.ajax({
+                    "url":"/login_ajax_check",
+                    "type":"post",
+                    "data":{"username":username,"password":password},
+                    "datatype":"json"
+                }).success(function (data) {
+                    //登录成功{"res":1}
+                    //登录失败{"res":0}
+                    if (data.res==0){
+                        $("#errmsg").show().html("用户名或密码错误")
+                    }
+                    else{
+                        //跳到首页
+                        location.href = "/index"
+                    }
+                })
+            })
+        })
+    </script>
+    //错误信息的格式
+    <style>
+        #errmsg{
+            display: none;
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        用户名:<input type="text" id="username"><br/>
+        密码:<input type="password" id="password"><br/>
+        <input type="submit" id="btnOK" value="确定">
+        <div id="errmsg"></div>
+    </div>
+</body>
+</html>

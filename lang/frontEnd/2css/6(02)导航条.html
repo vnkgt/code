@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>6(02)导航条</title>
+	<style>
+		.mainbar{
+			width: 600px;
+			height:30px;
+			border: solid #000 1px;
+			text-align: left;
+			background: blue;
+			/*覆盖自带样式*/
+			margin: 100px auto;
+			padding: 0px;
+			list-style:none;
+		}
+		.mainbar li{
+			display: inline-block;
+			/*background: black;*/
+			width: 14%;
+			height: 100%;
+			line-height: 25px;
+			text-align: center;
+			margin-left:0; 
+			font-size: 12px;
+		}
+		.mainbar li a{
+			display: block;
+			width: 100%;
+			height: 100%;
+			color: red;
+			text-decoration: none;
+		}
+		.mainbar li a:hover{
+			background: green;
+		}
+	</style>
+</head>
+<body>
+	<!-- ul.mainbar>(li>a{网站首页})*7 -->
+	<ul class="mainbar">
+		<li><a href="#">网站首页一</a></li>
+		<span>|</span>
+		<li><a href="#">网站首页二</a></li>
+		<span>|</span>
+		<li><a href="#">网站首页三</a></li>
+		<span>|</span>
+		<li><a href="#">网站首页四</a></li>
+		<span>|</span>
+		<li><a href="#">网站首页五</a></li>
+		<span>|</span>
+		<li><a href="#">网站首页六</a></li>
+	</ul>
+</body>
+</html>

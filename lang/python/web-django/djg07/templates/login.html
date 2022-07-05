@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+</head>
+<body>
+    <form method="post" action="/login_check">
+        {% csrf_token %}
+        用户名:<input type="text" name="username"><br/>
+        密码:<input type="password" name="pwd"><br/>
+        <img src="/get_verification_code"><br/>
+        验证码:<input type="text" name="client_ver_code"><br/>
+        <input type="submit"><br/>
+    </form>
+</body>
+</html>

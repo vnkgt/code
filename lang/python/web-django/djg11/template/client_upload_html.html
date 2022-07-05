@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户上传图片的html</title>
+</head>
+<body>
+<form method="post" action="/client_upload_save" enctype="multipart/form-data">
+        {% csrf_token %}
+    选择图片:<input type="file" name="client_img"><br/>
+    <input type="submit" name="上传">
+</form>
+
+</body>
+</html>

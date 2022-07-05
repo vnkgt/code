@@ -1,0 +1,122 @@
+//css总结
+style样式:
+    css单位:
+        1)像素:   px  eg: 20px
+        2)百分比: %   eg: 25%
+            相较与父容器
+    css颜色:
+        1)名称
+			eg:red/green/blue
+		2)rgb
+			eg:rgb(255,0,0)/rgb(0,255,0)/rgb(0,0,255)
+		3)16进制
+			每两个数一组相当与rgb
+			eg:#ff0000/#00ff00/#0000ff 
+    字体类:
+        1)color			    文字的颜色
+        2)font			    同时设置字体的几个属性
+                            格式:
+                                font:是否加粗 字体大小/行高 字体;
+                            eg:
+                                font:bold 20px/40px "Micosoft Yahei";
+            font-size		文字的大小,单位像素(px),默认16px
+            font-family		文字的字体
+            font-style		文字是否倾斜,"normal"(不倾斜)/"italic"(倾斜)
+            font-weight		文字是否加粗,normal"(不加粗)/"bold"(加粗)"
+        3)line-height		    文字的行高,文字的上下同时加间距,单位像素(px)
+        4)text-decoration	    文字的下划线,none(不加下划线)/underline(加下划线)
+        5)text-indent		    首行缩进,单位像素(px)
+        6)text-align		    文字水平对齐方式,center/left/right
+    盒子模型:
+        盒子模型(从外向内):
+            距离父容器的距离(margin)===>盒子边框线(border)===>内容距离边框的距离(padding)===>内容(width/height)
+        1)background                背景
+            格式:
+                background:url(背景图地址) 水平位置 垂直位置 平铺方式 颜色;
+            background-image:url(背景图地址);   确定背景图
+            background-color:颜色;
+            background-position:水平位置 垂直位置;
+                水平位置可选值:left/center/right/数值(可为负)
+                垂直位置可选值:top/center/bottom/数值(可为负)
+            background-repeat:重复方式;
+                重复方式可选值:
+                    repeat:背景图像在纵向和横向上平铺
+                    no-repeat:背景图像不平铺
+                    repeat-x:背景图像在横向上平铺
+                    repeat-y:背景图像在纵向平铺 
+            background-attachment:滚动方式;
+                滚动方式可选值:
+                    scroll:默认值,背景图像会随着页面其余部分的滚动而移动
+                    fixed:当页面的其余部分滚动时,背景图像不会移动
+                    inherit:规定应该从父元素继承background-attachment属性的设置
+            background-size:图片宽 图片高;
+                控制图片的尺寸,可以对图片进行缩放
+        2)padding                   盒子内容的边框
+            不同个数的宽度参数时,padding设置的边的顺序:
+                4个参数:上==>右==>下==>左
+                3个参数:上==>左/右==>下
+                2个参数:上/下==>左/右
+                1个参数:上/下/左/右
+            padding-top                     盒子内容上的边框
+            padding-right                   盒子内容右的边框
+            padding-bottom                  盒子内容下的边框
+            padding-left                    盒子内容左的边框
+        3)border                    盒子的边框线,同时设置"边框线的宽度&边框线的颜色&边框线的种类{solid(实线)/dashed(虚线)/dotted(点线)}"
+            border-top      上边框线
+                border-top-color			上边框线颜色
+                border-top-width			上边框线宽度
+                border-top-style			上边框线样式
+            border-bottom   下边框线
+                border-bottom-color			下边框线颜色
+                border-bottom-width			下边框线宽度
+                border-bottom-style			下边框线样式
+            border-left     左边框线
+                border-left-color			左边框线颜色
+                border-left-width			左边框线宽度
+                border-left-style			左边框线样式
+            border-right    右边框线
+                border-right-color			右边框线颜色
+                border-right-width			右边框线宽度
+                border-right-style			右边框线样式
+        4)margin                    盒子距离父容器的距离
+            不同个数的宽度参数时,margin设置的边的顺序:
+                4个参数:上==>右==>下==>左
+                3个参数:上==>左/右==>下
+                2个参数:上/下==>左/右
+                1个参数:上/下/左/右
+            margin-top                      盒子上边框距离父容器的距离
+            margin-right                    盒子右边框距离父容器的距离
+            margin-bottom                   盒子下边框距离父容器的距离
+            margin-left                     盒子左边框距离父容器的距离
+        5)overflow                  内容溢出是的显示模式
+            overflow:visible;		    默认值,溢出内容可见
+            overflow:hidden;		    溢出内容隐藏
+            overflow:scroll;		    始终显示滚动条
+            overflow:auto;  	        溢出显示滚动条,不溢出不显示滚动条
+            overflow:inherit;		    从父类元素继承overflow属性
+        6)float                     盒子浮动(相同等级盒子间自动靠拢)
+            float:left;                 左浮动(向左靠拢)
+            float:right;                右浮动(向右靠拢)
+        7)position                  盒子定位
+            position:relative;		    相对定位,元素本身相对于自身位置进行偏移
+		    position:absolute;		    绝对定位,元素脱离文档流,不占据文档流位置;相对于上级中“第一个设置postion属性”的容器进行定位;如果所有父级容器均无postion属性,则相对于body定位
+		    position:fixed;             固定定位,不占据文档流位置,先对于浏览器窗口进行定位
+		    position:static;	        默认值,无定位
+		    position:inherit;		    继承父级postion属性
+        8)位置属性(一般搭配position属性一起使用)
+            left                    左
+            right                   右
+            top                     上
+            bottom                  下
+        9)z-index                   元素层级
+            参数数值越大,越在上层显示
+        10)display                  显示格式(当某些css属性无效果时,可能需要使用该属性)
+            display:none;			    元素隐藏且不占位置
+            display:block;			    元素以块元素显示
+            display:inline;			    元素以内联元素显示
+            display:inline-block;	    元素以内联块元素显示
+        11)opacity                  透明度
+            一般设置为小数,数值为1时无opactiy效果
+        12)border-radius            圆角
+            数值越大,曲率越大
+        

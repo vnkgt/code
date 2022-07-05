@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+浮动:自动爱挨在一起
+	float属性:
+		left	左对齐
+		right	右对齐 
+-->
+<head>
+	<meta charset="UTF-8">
+	<title>5(05)浮动实现盒子实例</title>
+	<style>
+		.muen{
+			width: 504px;
+			height: 70px;
+			/*background-color: gold;*/
+			margin: 100px auto;
+			border:1px green solid;
+			/*去掉li标签的小圆点*/
+			list-style: none;
+			/*去掉ul标签的padding*/
+			padding:0;
+			}
+
+		.muen li a{
+			width: 70px;
+			color:red;
+			border:1px blue solid;
+			
+			
+			/*浮动,此处相当于display:inline-block;*/
+			float: left;
+			/*文字水平居中*/
+			text-align: center;
+			/*文字垂直居中*/
+			line-height: 70px;
+			/*边框合并*/
+			margin:-1;
+		}
+		
+		/*鼠标悬停时*/
+		.muen li a:hover{
+			color:gold;
+			background-color: red;
+		}
+
+	</style>
+</head>
+<body>
+	<ul class="muen">
+		<li><a href="#">首页</a></li>
+		<li><a href="#">公司信息</a></li>
+		<li><a href="#">公司信息</a></li>
+		<li><a href="#">公司信息</a></li>
+		<li><a href="#">公司信息</a></li>
+		<li><a href="#">公司信息</a></li>
+		<li><a href="#">公司信息</a></li>
+	</ul>
+</body>
+</html>

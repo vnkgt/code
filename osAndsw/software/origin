@@ -1,0 +1,30 @@
+origin=>科研作图软件
+行(row)与列(column):
+    数据库常见叫法:project->database->table(表格)
+    工作软件常见叫法:project->book->sheet(表格)
+            column00    column01    column02    ...
+    row00
+    row01
+    row02
+    row03
+    row04
+    row05
+    ...
+从图中提取origin数据:
+    1)导入图片
+        tools->digitizer->file->import导入图片->显示digitizer对话框
+    2)打开图片后设置坐标轴
+        将四个坐标轴分别移动到图中数据坐标轴的X下限，x上限。y下限，y上限，并且根据坐标的显示输入起始和终止的数值，选择坐标类型为线性或者log10
+    3)标定图中的点
+        digitizer对话框->axes->show X Reference Line/show X Reference Line显示XY定线
+        原图显示标定的点位置,digitizer显示点的数据,查看是否正确,如果不正确则进行调整,通过双击进行选择.
+        修改:
+        digitizer对话框中数据表->X Reference Line/X Reference Line行的数据->axis value列的值
+    4)开始提取数据
+        4.1)提取数据前需要先将X/Y的标定线关闭。把勾选取消即可。
+        digitizer对话框->axes->show X Reference Line/show X Reference Line关闭XY定线
+        4.2)捕获数据
+        digitizer对话框->file/image栏下的图标->左起第五至第九->依次为点、点追踪、网格、面追踪
+        4.3)先使用网格进行提取,然后对无法捕捉到的点用点取法获得,使得图中获取数据的点均匀且准确.
+    5)导出数据至excel
+        origin主对话框->file->export->excel

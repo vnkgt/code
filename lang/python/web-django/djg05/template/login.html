@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+</head>
+<body>
+POST:提交的参数在http请求头。安全性更高
+GET:提交的参数在url请求的地址中
+        #  method：参数的提交方式   action：提交后转到的页面
+        #  http返回头的参数全在request参数中，request参数在进行url匹配时会自动传递到views.py内的视图函数中，视图函数必须要有一个request参数
+        <form method="post" action="/login_check">
+            用户名:<input type="text" name="username"><br/>
+            密码:<input type="password" name="password"><br/>
+            <input type="submit" value="确定">
+        </form>
+</body>
+</html>

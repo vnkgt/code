@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>url逆向解析测试</title>
+</head>
+<body>
+    <h2>直接通过url访问首页:</h2>
+        <a href="/index3">首页(/index3)</a><br/>
+    <h2>url逆向解析生成index的连接:</h2>
+        <a href="{% url 'djg08app:index' %}">url_reverse</a><br/>
+    <h2>url逆向解析获取位置参数:</h2>
+        {#该处的11 22为默认参数#}
+        <a href="{% url 'djg08app:url_reverse_arg' 11 22%}">/url_reverse_arg/11/22</a><br/>
+    <h2>url逆向解析获取关键字参数</h2>
+        {#该处的key1=33 key2=44为默认参数#}
+        <a href="{% url 'djg08app:url_reverse_kwarg' key2=33 key1=44%}">/url_reverse_kwarg/33/44</a><br/>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+
+<!-- head区 -->
+<head>
+	<meta charset="UTF-8">
+	<title>10表单</title>
+</head>
+
+<!-- body区 -->
+<body>
+<!-- 
+	表单用于获取用户的信息
+		1.表单结构
+			<form>
+				<label></label>
+				<textarea></textarea>
+				<input>
+				<select>
+					<option></option>
+				</select>
+			</form>
+		2.标签属性/参数:
+			2.0.
+				一些通用属性:
+					name								指定标签的名称,主要用于前端与后端的交互
+					id									指定标签的id,主要用于html内部标签之间的交互
+					value								指定标签的值
+			2.1.
+				form标签:
+					作用:
+						定义表单的整体区域
+					属性:
+						action:表单数据提交的地址
+						method:表单数据提交的方式,post/get默认get
+			2.2.
+				input标签:
+					作用:
+						定义通用表单元素
+					属性:
+						type属性:
+							type="text"						文本输入框
+							type="password"					密码输入框
+							type="radio"					单选框
+							type="checkbox"					多选框
+							type="file"						上传文件
+							type="submit"					提交按钮
+							type="reset"					重置表单的所有值
+							type="image"					图片作为提交按钮,src属性指定图片地址
+							type="hidden"					隐藏表单域,用来储存值
+						name属性:
+						value属性:
+			2.3.
+				label标签:
+					作用:
+						表单元素定义文字标注
+					属性:
+						for									写某个标签的id属性,绑定某个标签
+			2.4.
+				textarea标签:
+					作用:
+						定义多行文本输入框
+			2.5.
+				select标签:
+					作用:
+						定义下拉表单
+				option标签(与select标签连用):
+					作用:
+						定义下拉表单中的元素
+ -->
+
+
+ <form action="">
+ 	<div>
+ 		<label for="UserName">用户名:</label>
+ 		<input type="text" name="username" id="UserName">
+ 	</div>
+ 		<br>
+
+ 	<div>
+ 		<label>密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+ 		<input type="password" name="password">
+ 	</div>
+ 		<br>
+
+ 	<div>
+ 		<label>文&nbsp;&nbsp;&nbsp;&nbsp;件:</label>
+ 			<input type="file" name="file">
+ 	</div>
+ 		<br>
+
+ 	<div>
+ 		<label>性&nbsp;&nbsp;&nbsp;&nbsp;别:</label>
+ 			<input type="radio" name="gender" value="0">男
+ 			<input type="radio" name="gender" value="1">女
+ 	</div>
+ 		<br>
+
+ 	<div>
+ 		<label>爱&nbsp;&nbsp;&nbsp;&nbsp;好:</label>
+ 			<input type="checkbox" name="hobby" value="0">代码
+ 			<input type="checkbox" name="hobby" value="1">前端
+ 			<input type="checkbox" name="hobby" value="2">美女
+ 			<input type="checkbox" name="hobby" value="3">二刺源
+ 	</div>
+ 		<br>
+
+ 	<div>
+		<label>自我介绍:</label>
+			<textarea name="textarea"></textarea>
+ 	</div>
+ 		<br>
+
+ 	<div>
+		<select name="area">
+			<option value="0">北京</option>
+			<option value="1">上海</option>
+			<option value="2">河北</option>
+			<option value="3">广州</option>
+			<option value="4">重庆</option>
+		</select>
+ 	</div>
+ 		<br>
+
+ 	<div>
+ 		<input type="submit" value="提交">
+ 		<input type="reset" value="重置">
+ 	</div>
+ 		<br>
+ </form>
+	
+</body>
+
+
+</html>

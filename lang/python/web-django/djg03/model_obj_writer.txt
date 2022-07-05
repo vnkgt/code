@@ -1,0 +1,117 @@
+
+book0 = BookInfo()
+book0.bookname = '海贼王'
+book0.bookdate = date(2006,11,26)
+book0.book_sup = 142
+book0.book_com = 177
+book0.save()
+
+
+
+book1 = BookInfo()
+book1.bookname = '七龙珠'
+book1.bookdate = date(1985,4,7)
+book1.book_sup = 200
+book1.book_com = 163
+book1.save()
+
+
+
+book2 = BookInfo()
+book2.bookname = '火影忍者'
+book2.bookdate = date(2010,7,14)
+book2.book_sup = 111
+book2.book_com = 188
+book2.save()
+
+
+
+book3 = BookInfo()
+book3.bookname = '死神'
+book3.bookdate = date(2005,10,15)
+book3.book_sup = 133
+book3.book_com = 122
+book3.save()
+
+
+
+book4 = BookInfo()
+book4.bookname = '噬神者'
+book4.bookdate = date(1979,4,13)
+book4.book_sup = 135
+book4.book_com = 151
+book4.save()
+
+
+
+book5 = BookInfo()
+book5.bookname = '时间简史'
+book5.bookdate = date(1974,6,7)
+book5.book_sup = 194
+book5.book_com = 148
+book5.save()
+
+
+
+book6 = BookInfo()
+book6.bookname = '果壳中的宇宙'
+book6.bookdate = date(1977,11,7)
+book6.book_sup = 170
+book6.book_com = 107
+book6.save()
+
+
+
+book7 = BookInfo()
+book7.bookname = '青年文摘'
+book7.bookdate = date(1999,2,25)
+book7.book_sup = 102
+book7.book_com = 138
+book7.save()
+
+
+
+book8 = BookInfo()
+book8.bookname = '读者'
+book8.bookdate = date(1971,1,9)
+book8.book_sup = 136
+book8.book_com = 118
+book8.save()
+
+
+
+book9 = BookInfo()
+book9.bookname = '每日新闻'
+book9.bookdate = date(2016,6,3)
+book9.book_sup = 131
+book9.book_com = 125
+book9.save()
+
+
+
+book10 = BookInfo()
+book10.bookname = '怪怪守护神'
+book10.bookdate = date(1976,2,16)
+book10.book_sup = 200
+book10.book_com = 104
+book10.save()
+
+
+
+book11 = BookInfo()
+book11.bookname = '天龙八部'
+book11.bookdate = date(1977,8,17)
+book11.book_sup = 133
+book11.book_com = 176
+book11.save()
+
+
+
+book12 = BookInfo()
+book12.bookname = '倚天屠龙记'
+book12.bookdate = date(2009,2,1)
+book12.book_sup = 101
+book12.book_com = 197
+book12.save()
+
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+
+<!-- head区 -->
+<head>
+	<meta charset="UTF-8">
+	<title>9表格</title>
+</head>
+
+<!-- body区 -->
+<body>
+	<!-- 
+		0.<table></table>:声明一个表格
+			表格属性:
+				border:表格边框,设置值为数字
+				cellpadding:单元格内容与表框的距离,设置值为数字
+				cellspacing:定义单元格之间的距离,设置值为数字
+				align:设置表格在浏览器窗口的水平对齐方式,可选值:left|center|right
+				width:表格宽,设置值为数字
+				height:半个高,设置值为数字
+		1.<tr></tr>:表格中的一行
+		2.<td></td>和<th></th>:表格中的一列
+			td/th标签属性:
+				align:单元格中内容的水平对齐方式,可选值:left|center|right
+				valign:单元格中内容的垂直对齐方式,可选值:top|center|bottom
+				colspan:设置单元格水平合并,设置值为数字
+				rowspan:设置单元格垂直合并,设置值为数字
+				width:单元格的宽度,可以是数字也可以是百分比
+				height:单元格的长度,可以是数字也可以是百分比
+			td一般用于普通单元格,th用于表头单元格 
+	-->
+	<h1>表格</h1>
+	<h2>表格一</h2>
+	<!-- table>tr*2>td*3 -->	
+	<table width="200" height="100" border="1" align="center">
+		<!-- 第一行 -->
+		<tr>
+			<th>1</th>		<!-- 第一列 -->
+			<th>2</th>		<!-- 第二列 -->
+			<th>3</th>		<!-- 第三列 -->
+		</tr>
+		<!-- 第二行 -->
+		<tr>
+			<td>4</td>					<!-- 第一列 -->
+			<td align="center">5</td>	<!-- 第二列 -->
+			<td align="right">6</td>	<!-- 第三列 -->
+		</tr>
+	</table> 
+
+	<h2>表格二</h2>
+	<table width="500" height="300" border="1" align="center">
+		<tr>
+			<td colspan="5"></td>
+		</tr>
+		<tr>
+			<td width="15%" height="25%"></td>
+			<td width="25%"></td>
+			<td width="15%"></td>
+			<td width="25%"></td>
+			<td rowspan="4" width="20%"><img src="../images/1.jpg" alt="图片"></td>
+		</tr>
+		<tr>
+			<td height="25%"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height="25%"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td height="25%"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</body>
+
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5(01)内联块元素</title>
+	<style>
+		.box{
+			width: 300px;
+			height: 200px;
+			margin: 50px auto;
+			background-color: gold;
+			border:#000 solid 3px;
+		}
+		.box a{
+			/*box中的a标签设置为内联块显示*/
+			display: block;
+			/*设置宽高*/
+			height: 40px;
+			/*字体背景色*/
+			background-color: pink;
+			/*字体颜色*/
+			color: #00f;
+			/*文字水平居中*/
+			text-align: center;
+			/*文字垂直居中*/
+			line-height: 40px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<a href="#">This is a link</a>
+	</div>
+</body>
+</html>

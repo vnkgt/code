@@ -1,0 +1,16 @@
+# 其它子文件创建的git仓库
+
+# 不忽略本文件夹下的.git
+
+# 不忽略某些文件
+
+# nodejs配置文件
+node_modules
+
+# python解释器配置文件
+__pycache__
+
+# 编译器
+translateTool/
+
+

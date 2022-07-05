@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Templates_TemplateFilters测试</title>
+</head>
+
+<body>
+{# for循环测试 #}
+<h2>for循环测试</h2>
+    {% for name in name_list%}
+        {{name}}<br/>
+    {% empty %}
+        为空<br/>
+    {%endfor%}<br/><br/>
+
+{# if判断测试 #}
+<h2>if判断测试</h2>
+    {% for grade in grade_list %}
+        {% if grade < 60 and grade >= 0%}
+            {{grade}}不及格，老兄<br/>
+        {% elif grade < 70 and grade >= 60%}
+            {{grade}}勉强及格<br/>
+        {% elif grade < 80 and grade >= 70%}
+            {{grade}}下次继续努力<br/>
+        {% elif grade < 90 and grade >= 80%}
+            {{grade}}优秀<br/>
+        {% elif grade <= 100 and grade >= 90%}
+            {{grade}}你已经可以毕业了<br/>
+        {% else %}
+            {{grade}}呵呵<br/>
+        {% endif %}
+    {% endfor %}
+
+{# 过滤器(python函数)测试#}
+    <h2>过滤器测试</h2>
+    <h3>default过滤器设置默认值</h3>
+        hhh模板变量:{{hhh|default:"憨批居然不给捞汁参数!!!"}}
+    <h3>date设置时间格式</h3>
+        现在是北京时间:{{nowtime|date:"Y年-m月-d号"}}
+    <h3>自定义名为mod过滤器</h3>
+        {% load filters %}          {#加载自定义过滤器的文件名#}
+        mod过滤器:{{mod_value|mod}}
+    <h3>自定义过滤器add</h3>
+        add过滤器:{{add_value|add:2}}
+<!--</body>-->
+<!--</html>-->

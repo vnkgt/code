@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+父容器继承clearfix:
+	clearfix写法:
+		/*
+			.clearfix:after解决浮动清除
+			.clearfix:before解决margin-top塌陷
+		*/
+		.clearfix:after,.clearfix:before{
+			content: "";
+			display: table;
+		}
+		.clearfix:after{
+			clear: both;
+		}
+		/*解决IE浏览器不兼容的问题*/
+		.clearfix:before{
+			zoom:1;
+		}
+ -->
+<head>
+	<meta charset="UTF-8">
+	<title>5(07)浮动清除与margin-top清除</title>
+	<style>
+		/*
+			.clearfix:after解决浮动清除
+			.clearfix:before解决margin-top塌陷
+		*/
+		.clearfix:after,.clearfix:before{
+			content: "";
+			display: table;
+		}
+		.clearfix:after{
+			clear: both;
+		}
+		/*解决IE浏览器不兼容的问题*/
+		.clearfix:before{
+			zoom:1;
+		}
+
+		/*父容器*/
+		.boxfather{
+			width: 700px;
+			height: 800px;
+			background-color: green;
+			/*覆盖ur自身的样式*/
+			list-style: none;
+			margin:100px auto;
+			padding:0px;
+		}
+		/*子容器*/
+		.boxson{
+			width: 100px;
+			height: 120px;
+			background-color: yellow;
+			/*包括margin-top:10px;用于测试margin-top塌陷*/
+			margin: 10px;	
+			/*浮动,测试清除浮动*/
+			float:left;
+		}
+	</style>
+</head>
+<body>
+	<ul class="boxfather clearfix">
+		<li class="boxson">1</li>
+		<li class="boxson">2</li>
+		<li class="boxson">3</li>
+		<li class="boxson">4</li>
+		<li class="boxson">5</li>
+		<li class="boxson">6</li>
+		<li class="boxson">7</li>
+		<li class="boxson">8</li>
+		<li class="boxson">9</li>
+		<li class="boxson">10</li>
+	</ul>
+</body>
+</html>

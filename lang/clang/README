@@ -1,0 +1,49 @@
+文件名含义:
+	func---->自带函数
+	bug ---->bug解决
+	way ---->方法与技巧
+	tip---->技巧
+	point--->知识点
+	summary->总结
+	demo---->案例
+	var/variable--->可变,变量
+
+multiple_files											--->	多文件编译
+clangSummary											--->	总结
+00summary_keyWord.c 									--->	c语言关键字
+01helloWord.c											--->	HelloWord
+02func_system.c  										--->	system函数
+03bug_C4996.c 											--->	解决c4996报错
+04tip_terminalArg.c 									--->	获取终端参数
+05tip_escapeChar.c 										--->	转义字符
+06tip_varDeclaration.c 									--->	变量声明
+07tip_constant.c 										--->	常量类型
+08point_dataType.c 										--->	数据类型	
+09func_printf_scanf.c 									--->	输入输出函数/连用scanf的问题解决
+10tip_randomNum.c 										--->	获取随机数
+demo_multiTable.c 										--->	9x9乘法表
+demo_listReverseOrder.c 								--->	将数组逆序
+demo_bubbleSort.c 										--->	冒泡排序
+demo_typeGame.c 										--->	打字游戏
+11func_string.c 										--->	字符串操作函数
+demo_keyWordShield.c 									--->	关键字屏蔽
+12func_memoryAllocation.c 								--->	内存分配函数
+demo_varString.c 										--->	可变字符串
+demo_textEdit.c 										--->	文本编辑器
+demo_greedySnake.c 										--->	贪吃蛇
+demo_fileCalculation.c 									--->	文件四则运算
+demo_fileSort.c 										--->	文件排序
+demo_addressManage.c 									--->	通讯录管理系统
+13tip_pointer.c 										--->	指针的使用
+
+
+
+
+
+
+
+
+
+
+
+

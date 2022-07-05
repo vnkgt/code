@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+盒子模型的种类:
+	1.块元素/行元素:
+		1.1.包括元素:div/p/ul/li/h1~h6/dl/dt/dd
+		1.2.布局行为:
+			支持所有样式
+			不设置宽度,默认为父级宽度的100%
+			盒子占一行,即使设置了宽度
+	2.内联元素/行内元素:
+ 		2.1.包括元素:span/a/em/b/strong/i
+ 		2.2.布局行为:
+ 			支持部分样式(不支持width/height/margin上下/padding上下)
+ 			宽高由内容决定
+ 			盒子并在一行
+ 			代码换行,盒子之间会产生间距
+ 			子元素是内联元素,父元素可以使用text-align属性设置子元素的水平对齐方式
+ 	3.内联块元素/内块元素:
+ 		3.1.现有元素无归类与此类别的
+ 		3.2.布局行为:
+ 			支持全部的样式
+ 			宽高由内容决定
+ 			盒子并在一行
+ 			代码换行,盒子之间会产生间距
+ 			子元素是内联元素,父元素可以使用text-align属性设置子元素的水平对齐方式
+		3.0.display属性:可以强制转换盒子模型的种类
+			display属性的可选值:
+				none			元素隐藏且不占位置
+				block			元素以块元素显示
+				inline			元素以内联元素显示
+				inline-block	元素以内联块元素显示
+ -->
+<head>
+	<meta charset="UTF-8">
+	<title>5(00)块元素与内联元素</title>
+	<style>
+		.outbox{
+			width: 300px;
+			height: 300px;
+			margin: 30px auto;
+			border: #000 solid 2px;
+			} 
+		.box_block{
+			width: 100px;
+			height: 50px;
+			background-color: #00f;
+		}
+		.box_inline{
+			/*宽高无用*/
+			width: 100px;
+			height: 50px;
+			background-color: #0f0;
+		}
+	</style>
+</head>
+<body>
+	<h3>块元素</h3>
+	<div class="outbox">
+		<div class="box_block">123</div><br>
+		<div class="box_block">456</div>
+	</div>
+	
+	<h3>内联元素</h3>
+	<div class="outbox">
+		<span class="box_inline">123</span>
+		<span class="box_inline">456</span>
+	</div>
+</body>
+</html>

@@ -1,0 +1,336 @@
+git安装
+	linux:apt install git
+	windows:将git-bash.exe所在目录,git.exe所在目录添加到PATH环境变量
+
+代码使用git管理流程:
+	(0.在某文件夹创建仓库-->)1.工作区代码(位于本地硬盘)-->2.添加到暂存区(位于本地硬盘)-->
+	-->3.上传到本地git(项目中的.git文件夹,位于本地硬盘)---->4.将本地git中的代码上传到github服务器(位于互联网服务器)
+	在某文件夹创建仓库:
+		git init
+	工作区代码:
+		自己在本地写的代码
+	添加到暂存区(记录工作区改动):
+		git add 文件(夹)名
+	上传到本地git:
+		git commit -m "版本信息说明"
+
+分支说明:
+	"HEAD"(指针)指向"主分支(master分支)最新版本的仓库"
+	master/main主分支---->相当于修改整个文件夹
+
+1.仓库:
+	创建空仓库:
+		git init	
+	创建一个版本:
+		git add 文件(夹)名
+		git commit -m "版本说明信息"
+	查看版本信息:
+		git log		
+		git log --pretty=oneline
+	(通过本地git修改本地git+工作区)版本回退:
+		git reset --hard 版本 文件名
+			HEAD			指向最新版本
+			HEAD^/HEAD~1	指向HEAD的前一个版本
+			HEAD^^/HEAD~2	指向HEAD的前第二个版本
+			版本编号
+			eg:
+				git reset --hard HEAD~100
+				git reset --hard 版本编号
+	查看之前的操作记录:
+		git reflog		
+	查看工作(暂存区)状态:
+		git status
+	丢弃工作区改动:
+		git checkout -- 文件名
+	丢弃暂存区改动:
+		git reset HEAD 文件名
+		git checkout -- 文件名
+	丢弃本地git改动:
+		版本回退
+	查看版本不同:
+		git diff 版本A 版本B -- 文件名
+		显示信息:
+			---		代表版本A
+			+++		代表版本B
+		git diff 服务器中的版本 -- 文件名
+		显示信息:
+			---		代表服务器中的版本
+			+++		代表本地工作区版本
+	删除工作区文件:
+		rm 文件
+		git rm 文件名
+		git commit
+
+2.分支:
+	查看分支:
+		git branch
+	创建并切换到新的分支:
+		git checkout -b 分支名
+	切换分支:
+		git checkout 分支名
+	修改分支名:
+		git branch -m oldName  newName
+		git branch -m newName	#修改当前分支名
+	分支合并到主分支:
+		快速合并(修改指针):
+			git merge 分支名
+		禁用快速合并(合并之后会提交一次):
+			git merge --no-f -m "说明信息" 分支名
+	删除分支:
+		git branch -d 分支名
+	合并冲突:
+		"主分支"/"分支"和"分支",同时修改同一文件的同一行;
+		解决方法:
+			进入文件重新编辑(使两个分支修改的内容不在同一行),并提交
+		查看分支图:
+			git log --graph --pretty=oneline
+	保存工作现场:
+		git status
+	查看工作现场列表:
+		git stash list
+	回到工作现场(必须切换到所在的分支):
+		git stash pop
+
+3.忽略某些文件的git,".gitignore":
+	在.git同级目录创建.gitignore文件===>在文件中编写需要忽略的文件/文件夹
+		eg:./python/venv忽略venv文件夹
+			./python/readme.txt忽略python下的readme.txt文件
+
+4.远程仓库:
+	生成ssh密匙:
+		ssh-keygen -C "注册邮箱"
+		(在github账户的ssh中写生成的密匙(有共有和私有之分))
+	将服务器中的项目复制到本地:
+		git clone 项目SSH/HTTP地址
+		复制出错:
+			eval "$(ssh-agent -s)"
+			ssh -add
+	本地代码推送到github服务器(远程库):
+		git push origin 分支名
+	本地分支跟踪对比远程分支:
+		git branch --set-upstream-to=origin/远程分支名 本地分支名
+	从远程分支拉取代码:
+		git pull origin 分支名
+	链接远程仓库方法:
+		1)设置用户名和邮箱(--global 为全局参数，表明本地所有Git仓库都会使用这个配置)
+			git config --global user.name "名称(随便取)"
+			git config --global user.email "github邮箱地址"
+		2)生成密钥(SSH key)
+			ssh-keygen -t rsa -C "github邮箱地址"
+			连敲三次回车生成密匙
+				windows位于"c:/用户/.ssh/id_rsa.pub"
+		3)添加密钥(SSH key)，并验证是否成功
+			添加密钥：将上一步骤生成的密钥即.ssh/id_rsa.pub中内容全部复制。在github的 Settings-->SSH and GPG keys-->New SSH key，key中粘贴复制的内容(Title自定义)。
+			验证：github输入第一条的命令，码云输入第二条
+				a.ssh -T git@github.com
+				b.ssh -T git@gitee.com
+		4)链接到远程仓库:
+			git remote add origin git@github.com:yourName/repositoryname.git(云端github上仓库的ssh地址)
+			git remote add origin https://github.com/yourName/repositoryname.git(云端github上仓库的http地址)
+		5)本地git代码与github云端代码的交互:
+			本地到云端:
+				git push origin 分支名
+			云端到本地:
+				git pull origin 分支名
+	清空远程仓库:
+		方法一:
+			1)将本地代码文件备份到其他位置
+			2)删除本地代码文件
+			3)git add *					//添加空文件
+			4)git commit -m "del"		//提交,del可为其他标识
+			5)git push origin master -f	//推到远程仓库
+		方法二:
+			1)切换到新的分支
+				git checkout --orphan latest_branch
+			2)缓存所有文件（除了.gitignore中声明排除的）
+				git add -A
+			3)提交跟踪过的文件（Commit the changes）
+				git commit -am "commit message"
+			4)删除master分支（Delete the branch）
+				git branch -D master
+			5)重命名当前分支为master（Rename the current branch to master）
+				git branch -m master
+			6)提交到远程master分支 （Finally, force update your repository）
+				git push -f origin master
+	更改本地仓库链接的远程仓库:
+		1)修改仓库
+			git remote set-url origin 新远程仓库的ssh/http
+		2)查看确认
+			git remote -v
+		3)提交到远程仓库
+			git push -u origin master
+
+5.github pages(pages.github.com搭建个人网址)
+	支持静态网站,动态网站需要自己搭建服务器
+	开启项目的github pages:
+		项目--->Settings--->Pages
+			Source资源所在的分支->目录
+			Custom domain用户自定义解析解析
+	访问:
+		<username>.github.io/<repo>
+			<username>:用户名
+			<repo>:仓库名/项目名
+		如果项目名为<uesrname>.github.io则直接访问<uesrname>.github.io
+
+6.git actions
+	对仓库进行操作时,github自动帮我们进行一些连带操作
+	eg:
+		push后给xxxx@gmail.com发一封邮件
+	git actions术语:
+		1)workflow （工作流程）：持续集成一次运行的过程，就是一个 workflow。
+		2)job （任务）：一个 workflow 由一个或多个 jobs 构成，含义是一次持续集成的运行，可以完成多个任务。
+		3)step（步骤）：每个 job 由多个 step 构成，一步步完成。 一个工作中的每个步骤都在相同的虚拟环境中执行，从而允许使用文件系统共享信息。
+		4)action （动作）：每个 step 可以依次执行一个或多个命令（action）。 你可以创建自己的action、使用 GitHub 社区共享的action。
+	开启项目git actions:
+		1)授予项目git actions权限
+			项目--->Setting--->Secrets--->New repository secret--->Name: TOKEN--->Value: 创建一个token并将值填在此处
+				(token创建参照文档末尾“一些git问题解决”)
+				Actions secrets相当于环境变量,除TOKEN以外还可以添加其它变量;须要有一个TOKEN,确保git actions有权限对仓库进行操作
+		2)创建workflow文件
+			本地项目--->创建.github文件夹--->创建".github/<workflow>.yml"
+				.github中必须要有一个以".yml"结尾的文件,文件名可以任写
+				GitHub Actions 的配置文件叫做 workflow 文件，存放在代码仓库的.github/workflows目录。
+				workflow 文件采用 YAML 格式，文件名可以任意取，但是后缀名统一为.yml，比如foo.yml。一个库可以有多个 workflow 文件。GitHub 只要发现.github/workflows目录里面有.yml文件，就会自动运行该文件。
+	workflow文件格式:
+		常见工作流:
+			1)name:定义工作流的名称，对该工作流要完成的任务进行简单的描述.
+			2)on:设置工作流的触发条件，一般指定为 push，表示在每次 git push 操作后自动触发该项目的工作流。
+				on: [push]
+				可以让工作流在 master 和 release 分支的 push 事件上运行：
+					on:
+					  push:
+					    branches:
+					    - master
+					    - release/*
+				或只在 master 分支的 pull_request 事件上运行：
+					on:
+					  pull_request:
+					    branches:
+					    - master
+				也可以设置定时运行计划，在周一到周五每天的 02:00 运行：
+					on:
+					  schedule:
+					  - cron: 0 2 * * 1-5
+			3)runs-on:指定运行所在操作系统的类型。GitHub Actions 提供 Linux、Windows 和 macOS 来构建运行。 
+				eg:
+					jobs:
+					  build:
+					    runs-on: ubuntu-latest # 表示工作流将在 ubuntu 的最新版本上运行
+				可用的虚拟机类型如下：
+					ubuntu-latest，ubuntu-18.04 或 ubuntu-16.04
+					windows-latest，windows-2019 或 windows-2016
+					macOS-latest 或 macOS-10.14
+			4)checkout:这是github官方的一个action，用于clone该仓库的源码到工作流中。
+				eg:
+					- uses: actions/checkout@v1
+				在本例中使用 v1 可以确保你使用的是签出操作的一个稳定版本。
+				要浅层克隆你的仓库或只复制你仓库的最新版本，使用下面的语法设置提取深度（fetch-depth）：
+					- uses: actions/checkout@v1
+					  with:
+					    fetch-depth: 1
+			5)也是一种acton，即在终端中执行的 shell 命令。
+				eg:
+				    - name: make # 定义命令的名称
+				      run: make # 使用 Makefile 来构建项目
+				eg:
+				    - name: dependencies
+				      run: |
+				        sudo apt install mysql-server mysql-client
+				        sudo apt install libmysqlclient-dev
+		eg:
+			name: CI
+			on: 
+			  push:
+			    branches: 
+			      - master
+			      - release/*
+			jobs:
+			  build:
+			    name: My Test
+			    runs-on: ubuntu-latest
+
+			    steps:
+			    - uses: actions/checkout@v2
+			      
+			    - name: Run a one-line script
+			      run: echo Hello, world!
+			      
+			    - name: Run a multi-line script
+			      run: |
+			        echo Add other actions to build,
+			        echo test, and deploy your project.
+			        
+			    - name: Setup Node
+			      uses: actions/setup-node@v1
+			      with:
+			        node-version: '10.x'
+
+
+项目使用git:
+	项目经理:
+		1)搭建项目框架
+		2)将项目框架放到服务器
+	普通员工:
+		1)在自己电脑上生成ssh公匙,再将ssh公匙给项目经理,项目经理将其放到服务器上
+		2)项目经理给每个组员的项目代码的地址,组员把代码下载到自己的电脑
+		3)创建本地分支dev,在dev分支上进行每天的开发
+		4)员工写完代码后,将代码发布到远程的dev分支
+	分支:
+		Master(项目经理):保存发布的项目代码
+		Dev(普通员工):保存开发过程中的代码
+
+一些git问题解决:
+	1)切换git远程仓库后push代码时出错:
+		//把远程仓库和本地同步，消除差异
+		git pull origin master --allow-unrelated-histories
+	2)每次push时输入name && password:
+		//可以用来解决fatal: Authentication failed for
+		git credential-manager uninstall
+	2)解决push需要每次输入name && password:
+		//生成一个本地文本用来记录name && password,保存到用户文件夹中的.git-credentials
+		git config --global credential.helper store
+	3)启用代理:
+		git config --global http.proxy http://127.0.0.1:1080
+		git config --global https.proxy http://127.0.0.1:1080
+	3)关闭代理:
+		git config --global --unset http.proxy 
+		git config --global --unset https.proxy
+	
+	4)TOKEN生成(可代替密码):
+		头像--->setting--->Developer settings--->Personal access tokens--->Generate new token(生成新roken)
+	5)secret生成(相当于访问项目的单独密码,多人协作项目时用来分配给其他人访问权限)
+		项目--->Code列最右侧Settings(小窗该选项会被隐藏)--->Secrets--->New repository secret(生成新的secret)
+	6)把token直接添加远程仓库链接中(可以避免同一个仓库每次提交代码都要输入token)：
+		git remote set-url origin https://<your_token>@github.com/<username>/<repo>.git
+			<your_token>：换成你自己得到的token
+			<username>：是你自己github的用户名
+			<repo>：是你的仓库名称
+	7)报错: Connection was reset, errno 10054
+	原因:ssl验证有问题或网络有问题
+	解决办法：
+		取消ssl验证: git config --global http.sslVerify "false"
+	8)报错: Failed to connect to github.com port 443: Timed out
+	  原因:网络问题
+	9)报错:	error setting certificate verify locations:
+		原因：git的配置并没有更新证书的位置，所以去原来的位置没有找到而报错
+		解决办法：
+			关闭证书校验：git config --system http.sslverify false 
+	网络有问题:
+		方法一:(靠谱)
+			切换网络
+		方法二:(不靠谱)
+			先设置全局代理,在取消全局代理
+			设置全局代理:
+				git config --global http.proxy http://127.0.0.1:7890
+				git config --global https.proxy http://127.0.0.1:7890
+			取消全局代理:
+				git config --global --unset http.proxy 
+				git config --global --unset https.proxy
+		方法三:(靠谱)
+			使用代理(需要代理节点或代理软件)
+				git config --global http.proxy http://proxyServer:proxyPort
+				git config --global https.proxy https://proxyServer:proxyPort
+				eg:
+					Clash软件系统代理后,默认是 127.0.0.1:7890
+					git config --global http.proxy http://127.0.0.1:7890
+					git config --global https.proxy https://127.0.0.1:7890

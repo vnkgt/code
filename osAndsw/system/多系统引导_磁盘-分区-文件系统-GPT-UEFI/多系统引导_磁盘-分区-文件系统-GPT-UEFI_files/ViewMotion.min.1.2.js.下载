@@ -1,0 +1,25 @@
+var AUI = AUI || {};
+! function(t, o, i) { "use strict";
+  var e = 0;
+  o.fn.scrolled = function(t, i) { "function" == typeof t && (i = t, t = 100);
+    var a = "vm-gap-" + e++;
+    this.scroll(function() {
+      var e = o(this),
+        n = e.data(a);
+      n && clearTimeout(n), n = setTimeout(function() { e.removeData(a), i.call(e[0]) }, t), e.data(a, n) }) }, i.ViewMotion = function(i) {
+    function e(i) {
+      var e = o(i).offset(),
+        a = e.top + o(i).scrollTop(),
+        l = (e.top + o(i).scrollTop() + o(i).height(), o(t).scrollTop() + o(t).height());
+      !l && (navigator.userAgent.toLowerCase().indexOf('android') > -1) && (l = 768);
+      return a < l - n.motionThreshold ? !0 : !1 }
+
+    function a() { o(n.filter).each(function(t, i) {
+        var a = o(i),
+          n = a.attr("vm-level");
+        n && o(i).addClass("level" + n), a.is("[vm-animation]") && e(i) && (a.addClass("animated " + a.attr("vm-animation")), a.css("visibility", "visible"), a.attr("vm-type", "0")) }) }
+    var n = o.extend({ obj: t, filter: "[vm-type=1]", motionThreshold: 0, motionGap: 1e3 / 60 }, i),
+      l = o(n.filter);
+    l.length && (l.each(function(t, i) {
+      var e = o(i).attr("vm-level");
+      e && o(i).addClass("level" + e) }), o(n.obj).scrolled(n.motionGap, function() { a() }), a()) } }(window, jQuery, AUI);

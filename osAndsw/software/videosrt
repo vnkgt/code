@@ -1,0 +1,94 @@
+使用本软件需要:
+	阿里云账号一个aliyun.com
+	百度开发者账号一个(百度账号)
+
+使用配置:
+	语音引擎
+		阿里云语音引擎
+			名称/别名:随便写
+			AppKey:
+				1.登录aliyun.com
+				2.开通oss服务(https://oss.console.aliyun.com/)
+				3.创建Bucket(https://oss.console.aliyun.com/bucket)
+					Bucket名称: 随便写
+					地域: 任选(选离自己近的服务器)
+					读写权限: 公共读写
+					其他选项不用管
+				4.开通语音引擎服务(https://nls-portal.console.aliyun.com/)
+					全部项目--->创建项目
+					项目名称: 随便写
+					项目类型: 语音合成/语音识别
+					项目场景描述: 随便写,相当于备注
+						项目功能配置
+							语音识别
+							类别: 非电话
+							行业: 通用
+							场景: 多语言功能(要翻译日语就选日语，要翻译英语就选英语)
+								确认使用
+				AppKey: https://nls-portal.console.aliyun.com/applist--->项目Appkey--->复制
+			AccessKeyId:
+			AccessKeySecret:
+				1.鼠标放在头像上
+				2.AccessKey管理
+				3.创建AccessKey
+				4.AccessKeyId: 复制AccessKey ID对应的内容
+				5.AccessKeySecret: 查看Secret-->复制内容
+	翻译引擎
+		百度翻译
+			名称/别名: 随便写
+			AppId: 
+			AppSecret: 
+				1.百度翻译开放平台(https://fanyi-api.baidu.com/api/trans/product/desktop?req=developer)
+				2.注册并开通翻译API服务
+					选择开通的服务版本: 个人开发者
+						申请认证
+							填写申请表格:
+								您的应用名称是什么？
+									随便写
+								有无应用相关的介绍链接
+									随便写
+								请简单介绍下您的应用
+									随便写
+								服务器地址
+									不写,留空
+								提交申请
+				AppID: https://fanyi-api.baidu.com/api/trans/product/desktop?req=developer--->APP ID内容
+				AppSecret:https://fanyi-api.baidu.com/api/trans/product/desktop?req=developer--->密钥内容
+		腾讯云
+	设置--->OSS对象储存设置:
+		Endpoint: 
+			https://oss.console.aliyun.com/overview--->我的访问路径--->点击创建的OSS对象--->概览--->访问域名--->外网访问--->Endpoin
+		BucketDomain:
+			https://oss.console.aliyun.com/overview--->我的访问路径--->点击创建的OSS对象--->概览--->访问域名--->外网访问--->Bucket域名
+		BucketName:
+			https://oss.console.aliyun.com/bucket--->Bucket名称
+		AccessKeyId:
+		AccessKeySecret:
+			1.鼠标放在头像上
+			2.AccessKey管理
+			3.创建AccessKey
+			4.AccessKeyId: 复制AccessKey ID对应的内容
+			5.AccessKeySecret: 查看Secret-->复制内容
+
+软件使用:
+	1.新建--->语音引擎(阿里云)
+	2.新建--->翻译引擎(百度翻译)
+	3.设置--->OSS对象储存设置
+	4.选择输入语言
+	  选择输出语言
+	  过滤选择: 自行设置
+	  输出文件: 自行选择
+	  输出编码: 任选
+	  输出音轨: 任选(一般选"音轨一")
+	5.设置--->软件设置
+	  设置文件输出目录
+	6.生成字幕
+
+
+
+
+AccessKey ID
+LTAI5t7KQVGvhsashmbawbRA
+
+AccessKey Secret
+G0Jz9tWRPIVXCHgKRBhSFUqDaqckwJ

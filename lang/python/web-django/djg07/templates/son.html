@@ -1,0 +1,15 @@
+{# 继承父模板 #}
+{% extends "father.html" %}
+
+{# 改写父模版的块b1 #}
+{% block b1 %}
+    {{ block.super }}       {# 获取父模版的快的信息 #}
+    <h3>----Son_Block b1</h3>
+{% endblock b1 %}
+
+{# 改写父模版的块b2 #}
+{% block b2 %}
+    {{ block.super }}
+    <h3>----Son_Block b2</h3>
+{% endblock b2%}
+

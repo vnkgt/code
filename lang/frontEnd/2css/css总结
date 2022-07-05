@@ -1,0 +1,376 @@
+css样式总结:
+	样式属性--->选择器--->盒子模型--->常见bug/布局
+
+0.样式属性:
+	0.0.颜色:
+		css颜色的三种表示方式:
+			1.名称
+				eg:red/green/blue
+			2.rgb
+				eg:rgb(255,0,0)/rgb(0,255,0)/rgb(0,0,255)
+			3.16进制
+				每两个数一组相当与rgb
+				eg:#ff0000/#00ff00/#0000ff 
+	0.1.字体属性:
+		1)color			设置文字的颜色
+		2)font-size		设置文字的大小,单位像素(px),默认16px
+		3)font-family		设置文字的字体
+		4)font-style		设置文字是否倾斜,"normal"(不倾斜)/"italic"(倾斜)
+		5)font-weight		设置文字是否加粗,normal"(不加粗)/"bold"(加粗)"
+		6)line-height		设置文字的行高,文字的上下同时加间距,单位像素(px)
+		7)font			同时设置字体的几个属性
+						格式:
+							font:是否加粗 字体大小/行高 字体;
+						eg:
+							font:bold 20px/40px "Micosoft Yahei";
+		8)text-decoration	设置文字的下划线,none(不加下划线)/underline(加下划线)
+		9)text-indent		设置首行缩进,单位像素(px)
+		10)text-align		设置文字水平对齐方式,center/left/right
+	0.2.盒子模型属性:
+		0)width/heght:
+			宽/高:
+				数值
+		1)display
+			可选值:
+				none			元素隐藏且不占位置
+				block			元素以块元素显示
+				inline			元素以内联元素显示
+				inline-block	元素以内联块元素显示
+		2)overflow
+			可选值:
+				visible		默认值,溢出内容可见
+				hidden		溢出内容隐藏
+				scroll		始终显示滚动条
+				auto		溢出显示滚动条,不溢出不显示滚动条
+				inherit		从父类元素继承overflow属性
+		3)border
+			同时设置所有边框:
+				格式:
+					border:边框线宽 边框颜色 边框类型;
+			设置某个边框:
+				格式:
+					border-位置-边框属性:边框线宽 边框颜色 边框类型;
+						位置:top/bottom/left/right
+						边框属性:color/width/style
+			边框宽度可选值:
+				数值
+			边宽颜色可选值:
+				颜色文字/rgb()/16进制
+			边框类型:
+				实线:solid
+				虚线:dashed
+				点线:dotted
+		4)padding
+			同时设置所有padding:
+				格式:
+					padding:数值;
+						不同个数的宽度参数时,padding设置的边的顺序:
+							4个参数:上->右->下->左
+							3个参数:上->左/右->下
+							2个参数:上/下->左/右
+							1个参数:上/下/左/右
+			设置某个padding:
+				格式:
+					padding-位置:数值;
+						位置:top/bottom/left/right
+		5)margin
+			同时设置所有margin:
+				格式:
+					margin:数值;
+						不同个数的宽度参数时,margin设置的边的顺序:
+							4个参数:上->右->下->左
+							3个参数:上->左/右->下(可以设置左右的值为auto)
+							2个参数:上/下->左/右(可以设置左右的值为auto)
+							1个参数:上/下/左/右(可以设置左右的值为auto)
+			设置某个margin:
+				格式:
+					margin-位置:数值;
+						位置:top/bottom/left/right
+					margin
+		6)float
+			可选值:
+				左浮动		left;
+				右浮动		right;
+		7)position
+			可选值:
+				relative		相对定位,元素本身相对于自身位置进行偏移
+				absolute		绝对定位,元素脱离文档流,不占据文档流位置;相对于上级中“第一个设置postion属性”的容器进行定位;如果所有父级容器均无postion属性,则相对于body定位
+				fixed			固定定位,不占据文档流位置,先对于浏览器窗口进行定位
+				static			默认值,无定位
+				inherit			继承父级postion属性
+		8)left/right/top/bottom
+			一般搭配position属性使用
+			可选值:
+				数值
+		9)z-index
+			可选值:
+				数值,数值越大越在上层显示
+		10)background属性:
+			格式:
+				background:url(背景图地址) 水平位置 垂直位置 平铺方式 颜色;
+			background-image:url(背景图地址);
+			background-color:颜色;
+			background-position:水平位置 垂直位置;
+				水平位置可选值:left/center/right/数值(可为负)
+				垂直位置可选值:top/center/bottom/数值(可为负)
+			background-repeat:重复方式;
+				重复方式可选值:
+					repeat:背景图像在纵向和横向上平铺
+					no-repeat:背景图像不平铺
+					repeat-x:背景图像在横向上平铺
+					repeat-y:背景图像在纵向平铺 
+			background-attachment:滚动方式;
+				滚动方式可选值:
+					scroll:默认值,背景图像会随着页面其余部分的滚动而移动
+					fixed:当页面的其余部分滚动时,背景图像不会移动
+					inherit:规定应该从父元素继承background-attachment属性的设置 
+		11)opacity
+			透明度:
+				一般为小数
+		12)border-radius
+			圆角半径:
+				数字,圆角的半径
+
+
+1.选择器:
+	1.1.标签选择器
+		格式:
+			head区(标签名为"*"代表选择所有标签):
+				<style>
+					标签{
+						样式属性
+					}
+				</style>
+			body区:
+				<标签><标签>
+	1.2.id选择器
+		格式:
+			head区:
+				<style>
+					#id名{
+						样式属性
+					}
+				</style>
+			body区:
+				<标签 id="id名"></标签>
+	1.3.类选择器
+		格式:
+			head区:
+				<style>
+					.类A{
+						样式属性
+					}
+					.类B{
+						样式属性
+					}
+					...
+					.类N{
+						样式属性
+					}
+				</style>
+			body区:
+				<标签 class="类A 类B ... 类N"></标签>
+	1.4.组选择器
+		格式:
+			head区:
+				<style>
+					.类A,.类B,...,.类N{
+						类A到类N,的公共样式属性
+					}
+					.类A{
+						类A独有的样式属性
+					}
+					.类B{
+						类B独有的样式属性
+					}
+					...
+					.类N{
+						类A独有的样式属性
+					}
+				</style>
+			body区:
+				<标签 class="类A 类B ... 类N"></标签>
+	1.5.层次选择器(一般不超过4层)
+		格式:
+			head区:
+				<style>
+					.类A .类B ... .类N 某个标签{
+						样式属性
+					}
+				</style>
+			body区:
+				<标签A class="类A">
+					<标签B class="类B">
+						...
+						<标签N class="类N">
+							<某个标签></某个标签>
+						</标签N>
+					</标签B>
+				</标签A>
+	1.6.伪选择器
+		格式:
+			head区:
+				<style>
+					.类名:伪选择器{
+						样式属性
+					}
+				</style>
+					注意:
+						1)该选择起也可以有多层
+						2)伪选择器:
+							伪类选择器:hover(鼠标悬停时的样式)
+							伪标签选择器:before(在一段文字前添加字符串)/after(在一段文字后添加字符串)
+			body区:
+				<标签 class="类名"></标签>
+
+
+2.盒子模型:
+	1)从外向内:
+		盒子的外边框到页面边框的部分(margin)->盒子的边框(border)->盒子内容距边框的距离(padding)->盒子内容(width/height)
+	2)盒子模型的种类:
+		1.块元素/行元素:
+			1.1.包括元素:div/p/ul/li/h1~h6/dl/dt/dd
+			1.2.布局行为:
+				支持所有样式
+				不设置宽度,默认为父级宽度的100%
+				盒子占一行,即使设置了宽度
+		2.内联元素/行内元素:
+	 		2.1.包括元素:span/a/em/b/strong/i
+	 		2.2.布局行为:
+	 			支持部分样式(不支持width/height/margin上下/padding上下)
+	 			宽高由内容决定
+	 			盒子并在一行
+	 			代码换行,盒子之间会产生间距
+	 			子元素是内联元素,父元素可以使用text-align属性设置子元素的水平对齐方式
+	 	3.内联块元素/内块元素:
+	 		3.1.现有元素无归类与此类别的
+	 		3.2.布局行为:
+	 			支持全部的样式
+	 			宽高由内容决定
+	 			盒子并在一行
+	 			代码换行,盒子之间会产生间距
+	 			子元素是内联元素,父元素可以使用text-align属性设置子元素的水平对齐方式
+			3.0.display属性:可以强制转换盒子模型的种类
+				display属性的可选值:
+					none			元素隐藏且不占位置
+					block			元素以块元素显示
+					inline			元素以内联元素显示
+					inline-block	元素以内联块元素显示
+	3)浮动:
+		浮动(float)特性:
+			1.浮动元素有左移(float:left;)右移(float:right;)
+			2.浮动元素会向左或右浮动,碰到父元素边界或其他元素才会停下
+			3.相邻浮动单元可以并在一行,超出父元素布边界就换行
+			4.浮动使行内元素或块元素自动转换为内联块元素
+			5.浮动元素A其后的部浮动元素B,B会占据A的位置,B中的文字会绕开A,形成文字绕图的效果
+			6.盒子嵌套时,父容器没有设置大小(一般是不设置高度),子容器整体浮动无法撑开父容器,父元素需要清除浮动
+			7.浮动元素间无margin的垂直合并
+		浮动可选值:
+			左浮动		float:left;
+			右浮动		float:right;
+	4)定位:
+		1.文档流:
+			先写的先排,后写的后排
+		2.定位:
+			2.1.position属性的可选值:
+				relative		相对定位,元素本身相对于自身位置进行偏移
+				absolute		绝对定位,元素脱离文档流,不占据文档流位置;相对于上级中“第一个设置postion属性”的容器进行定位;如果所有父级容器均无postion属性,则相对于body定位
+				fixed			固定定位,不占据文档流位置,先对于浏览器窗口进行定位
+				static			默认值,无定位
+				inherit			继承父级postion属性
+			2.2.position属性设置后一般搭配:
+				left	数值,可以为负值;距左边框的距离
+				right	数值,可以为负值;距右边框的距离
+				top		数值,可以为负值;距上边框的距离
+				bottom	数值,可以为负值;距下边框的距离
+			2.3.定位元素层级:
+				z-index属性:
+					数值,数值越大越在上层显示
+			2.4.定位特性:
+				绝对定位和固定定位会自动将"块元素"和"行内元素"转换为"行内块元素"
+	5)背景:
+		background属性:
+		格式:
+			background:url(背景图地址) 水平位置 垂直位置 平铺方式 颜色;
+			1.background-image:url(背景图地址);
+				确定背景图
+			2.background-color:颜色;
+			3.background-position:水平位置 垂直位置;
+				水平位置可选值:left/center/right/数值(可为负)
+				垂直位置可选值:top/center/bottom/数值(可为负)
+			4.background-repeat:重复方式;
+				重复方式可选值:
+					repeat:背景图像在纵向和横向上平铺
+					no-repeat:背景图像不平铺
+					repeat-x:背景图像在横向上平铺
+					repeat-y:背景图像在纵向平铺 
+			5.background-attachment:滚动方式;
+				滚动方式可选值:
+					scroll:默认值,背景图像会随着页面其余部分的滚动而移动
+					fixed:当页面的其余部分滚动时,背景图像不会移动
+					inherit:规定应该从父元素继承background-attachment属性的设置 
+			6.background-size:图片宽 图片高;
+				控制图片的尺寸,可以对图片进行缩放
+
+
+3.常见布局/bug:
+	1)盒子margin-top塌陷:
+		1.margin-top塌陷:
+			父容器套子容器时,子容器的margin-top失效
+		2.margin-top解决方法:
+			2.1.父容器继承伪元素类:
+				.clearfix:before{
+					context:"";
+					display:table;
+				}
+			2.2.父容器添加属性:
+				overfloat:hidden;
+			2.3.父容器添加边框:
+				border:宽度 颜色 线的样式;
+	2)盒子浮动清除:
+		1.浮动清除:
+			嵌套盒子模型,父容器不设置高时,子容器使用浮动,会使父容器变形
+		2.浮动清除的方法:
+			2.1.父容器添加属性:overfloat:hidden;
+			2.2.添加最后一个子容器:<div style="clear:both"><div>(少用)	
+			2.3.使用清除浮动的类:(常用,该类写在父容器中)
+				.clearfix:after{
+					content: "";
+					display: table;
+					clear: both;
+				}
+	3)盒子同时解决margin-top塌陷和浮动清除:
+		父容器继承clearfix:
+			clearfix写法:
+				/*
+					.clearfix:after解决浮动清除
+					.clearfix:before解决margin-top塌陷
+				*/
+				.clearfix:after,.clearfix:before{
+					content: "";
+					display: table;
+				}
+				.clearfix:after{
+					clear: both;
+				}
+				/*解决IE浏览器不兼容的问题*/
+				.clearfix:before{
+					zoom:1;
+				}
+	4)盒子子容器有间隔:
+		设置margin为负值;
+		设置float属性;
+	5)盒子一行文字垂直居中:
+		计算上下margin,计算式:	文字底部距顶部边框的距离(行高)=margin-top数值+文字大小数值
+		设置line-height属性:	line-height数值=height数值
+	6)盒子在页面始终居中:
+		margin:左右参数写auto
+	7)盒子始终水平居中/垂直居中(盒子中添加属性):
+		水平居中:
+			position:fixed;
+			left:50%;
+			margin-left:盒子宽度一半的负值;
+		垂直居中:
+			position:fixed;
+			top:50%;
+			margin-top:盒子高度一半的负值;

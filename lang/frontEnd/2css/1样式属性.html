@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+	常用css的样式属性:
+		color			设置文字的颜色
+		font-size		设置文字的大小,单位像素(px),默认16px
+		font-family		设置文字的字体
+		font-style		设置文字是否倾斜,"normal"(不倾斜)/"italic"(倾斜)
+		font-weight		设置文字是否加粗,normal"(不加粗)/"bold"(加粗)"
+		line-height		设置文字的行高,文字的上下同时加间距,单位像素(px)
+		font			同时设置字体的几个属性
+						格式:
+							font:是否加粗 字体大小/行高 字体;
+						eg:
+							font:bold 20px/40px "Micosoft Yahei";
+		text-decoration	设置文字的下划线,none(不加下划线)/underline(加下划线)
+		text-indent		设置首行缩进,单位像素(px)
+		text-align		设置文字水平对齐方式,center/left/right
+ -->
+<head>
+	<meta charset="UTF-8">
+	<title>1样式属性</title>
+		<style>
+			div{
+				color:green;
+				font-size:20px;
+				line-height: 40px;
+				text-align: center;
+			}
+			span{
+				color:red;
+				font-size:40px;
+				text-indent:50px;
+				text-decoration: underline;
+			}
+			em{
+				color:gold;
+			}
+		</style>
+</head>
+<body>
+	<div>
+		<span>Python</span>是一种解释型、面向对象、动态数据类型的高级程序设计语言。
+		Python 由 Guido van Rossum 于 1989 年底发明，第一个公开发行版发行于 1991 年。
+		像 Perl 语言一样, Python 源代码同样遵循 <em>GPL(GNU General Public License) </em>协议。	
+	</div>
+
+</body>
+</html>

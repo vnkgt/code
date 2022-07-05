@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>
+        "子地区"
+    </h1>
+        <h2>
+            {%for area_son in area_sons%}
+                {{area_son.name}}
+            {%empty%}
+                <h3>为空!</h3>
+            {%endfor%}
+        </h2>
+
+</body>
+</html>

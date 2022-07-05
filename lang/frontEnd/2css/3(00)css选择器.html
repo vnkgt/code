@@ -1,0 +1,178 @@
+选择器:
+	0.选择器的位置
+		head区/css文件(以head区为例):
+			<style>
+				选择器{
+					样式属性
+				}
+			</style>
+		body区:
+			<标签 id="标签id" class="类选择器名"></标签>
+
+
+	1.选择器的种类
+		1.1.标签选择器
+			格式:
+				head区(标签名为"*"代表选择所有标签):
+					<style>
+						标签{
+							样式属性
+						}
+					</style>
+			eg:
+				head区:
+					<style>
+						div{
+							color:red;
+						}
+					</style>
+				body区:
+					<div>Hello Word!</div>
+
+		1.2.id选择器
+			格式:
+				head区:
+					<style>
+						#id名{
+							样式属性
+						}
+					</style>
+				body区:
+					<标签 id="id名"></标签>
+			eg:
+				head区:
+					<style>
+						#tempid{
+							color:red;
+						}
+					</style>
+				body区:
+					<div id="tempid">Hello Word!</div>
+
+		1.3.类选择器
+			格式:
+				head区:
+					<style>
+						.类A{
+							样式属性
+						}
+						.类B{
+							样式属性
+						}
+						...
+						.类N{
+							样式属性
+						}
+					</style>
+				body区:
+					<标签 class="类A 类B ... 类N"></标签>
+			eg:
+				head区:
+					<style>
+						.classA{
+							color:red;
+						}
+						.classB{
+							font-size: 20px;
+						}
+					</style>
+				body区:
+					<div class="classA">Hello Word one!</div>
+					<div class="classA classB">Hello Word two!</div>
+
+		1.4.组选择器
+			格式:
+				head区:
+					<style>
+						.类A,.类B,...,.类N{
+							类A到类N,的公共样式属性
+						}
+						.类A{
+							类A独有的样式属性
+						}
+						.类B{
+							类B独有的样式属性
+						}
+						...
+						.类N{
+							类A独有的样式属性
+						}
+					</style>
+				body区:
+					<标签 class="类A 类B ... 类N"></标签>
+			eg:
+				head区:
+					<style>
+						.classA,.classB{
+							color:red;
+						}
+						.classA{
+							font-size: 20px;
+						}
+						.classB{
+							font-size: 30px;
+						}
+					</style>
+				body区:
+					<div class="classA">Hello Word one!</div>
+					<div class="classB">Hello Word two!</div>
+
+		1.5.层次选择器(一般不超过4层)
+			格式:
+				head区:
+					<style>
+						.类A .类B ... .类N 某个标签{
+							样式属性
+						}
+					</style>
+				body区:
+					<标签A class="类A">
+						<标签B class="类B">
+							...
+							<标签N class="类N">
+								<某个标签></某个标签>
+							</标签N>
+						</标签B>
+					</标签A>
+			eg:
+				head区:
+					<style>
+						.classA .classB span{
+							color:red;
+						}
+					</style>
+				body区:
+					<div class="classA">
+						day one!
+						<div class="classB">
+							day two!
+							<span>
+								day three!
+							</span>
+						</div>
+					</div>
+
+		1.6.伪选择器
+			格式:
+				head区:
+					<style>
+						.类名:伪选择器{
+							样式属性
+						}
+					</style>
+						注意:
+							1)该选择起也可以有多层
+							2)伪选择器:
+								伪类选择器:hover(鼠标悬停时的样式)
+								伪标签选择器:before(在一段文字前添加字符串)/after(在一段文字后添加字符串)
+				body区:
+					<标签 class="类名"></标签>
+			eg:
+				head区:
+					<style>
+						.boxA:hover{
+							color:green;
+						}
+					</style>
+				body区:
+					<div class="boxA">Hello Word!</div>

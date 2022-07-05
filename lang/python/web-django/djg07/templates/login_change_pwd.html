@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码的页面</title>
+</head>
+<body>
+    <form method="post" action="/login_change_pwd_check">
+        {% csrf_token %}
+        输入旧密码:<input type="text" name="old_pwd"><br/>
+        输入新密码:<input type="text" name="new_pwd"><br/>
+        <input type="submit" name="submit">
+    </form>>
+</body>
+</html>

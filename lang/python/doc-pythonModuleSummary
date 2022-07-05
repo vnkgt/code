@@ -1,0 +1,286 @@
+#最后编辑时间2021.07.15-14：09
+
+一些基础函数:
+	list()	#初始化一个空列表
+		listobj.index("xxx")	#查看"xxx"在listobj对象中的索引下标
+	dict()	#初始化一个空字典
+		dictobj.keys()			#查看dictobj对象的所有键
+		del dictobj["xxx"]		#删除"xxx"键及其对应的值
+		dictobj["xxx"] = "yyy"	#修改dictobj对象"xxx"对应的值
+常见模块的常见函数:
+	文件:
+		open(file="filepath",mode="way",encoding="encodingWay")	#打开文件,返回文件对象
+			mode可选:打开方式
+				1.r,只读,文件指针位于文件头
+				2.w,只写模式（不可读，文件不存在则创建，存在则清空内容),文件指针位于文件头
+				3.x,只写模式（不可读，文件不存在则创建，存在则报错)
+				4.a,追加模式(不可读，文件不存在则创建，存在则追加内容),文件指针位于文件尾
+				5.b,以二进制格式打开，常与r/w/x/a联合使用 eg:"rb","rw"
+			encoding可选:编码方式
+				utf-8
+				gbk
+		fileobj.write("content")		#将"content"写入fileobj对象
+		fileobj.read()					#返回fileobj对象所有的内容
+		fileobj.readline()				#返回读取一行的内容
+		fileobj.readlines()				#从文件指针处读至结束,按行读取数据,返回一个列表
+		fileobj.seek(offset[, whence]	#用于移动文件读取指针到指定位置
+			offset
+				开始的偏移量，也就是代表需要移动偏移的字节数
+			whence
+				可选,默认值为0,给offset参数一个定义,表示要从哪个位置开始偏移;0代表从文件开头开始算起;1代表从当前位置开始算起;2代表从文件末尾算起
+	os:
+		创建:
+			os.mkdir("dirpath")		#创建文件夹
+			os.mknod("filepath")	#创建文件
+		文件查询(位置，属性等):
+		    os.path.exists(path+filename/pathname)	#判断文件或文件夹是否存在
+		    os.path.isdir()		#判断是否为文件夹
+		    os.path.isfile()	#判断是否为文件
+			os.path.islink()	#判断文件是否连接文件,返回boolean
+		    os.walk()			#文件遍历(返回一个迭代器)
+			os.path.getsize()	#返回文件大小 字节单位
+		文件修改:
+			os.rename()		#重命名文件
+			os.remove(path)  # path是文件的路径，如果这个路径是一个文件夹，则会抛出OSError的错误，这时需用用rmdir()来删除
+			os.rmdir(path)  # path是文件夹路径，注意文件夹需要时空的才能被删除
+		文件拆分合并:
+		    os.path.split(path+filename)	#将路径文件拆分为路径及文件
+		    os.path.splitext(filename)		#将文件才分为文件名及文件后缀名
+		    os.path.join(path,filename)		#将文件路径及文件合并
+		调用系统命令:
+			os.system("command")	#运行command命令
+	shutil:
+		shutil.copy("oldpath","newpath")	#复制,可以顺便重命名文件
+		shutil.move("oldpath","newpath")	#移动,可以顺便重命名文件
+		shutil.rmtree("path") 				#删除所有文件及子文件夹
+	re:
+		1.常见函数及用法
+			re.match(pattern, string, flags=0)	# 匹配字符串
+				参数:
+					pattern    匹配的正则表达式
+					string    要匹配的字符串。
+					flags    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：正则表达式修饰符 - 可选标志
+			re.search(pattern, string, flags=0)	# 扫描整个字符串并返回第一个成功的匹配,即找到就返回
+				参数:
+					pattern    匹配的正则表达式
+					string    要匹配的字符串。
+					flags    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。
+			re.sub(pattern, repl, string, count=0, flags=0) # 替换字符串中的匹配项,匹配和替换符合patter的字符串
+				参数:
+					pattern : 正则中的模式字符串。
+					repl : 替换的字符串，也可为一个函数。
+					string : 要被查找替换的原始字符串。
+					count : 模式匹配后替换的最大次数，默认 0 表示替换所有的匹配。
+			re.compile(pattern[, flags]) # 用于编译正则表达式，生成一个正则表达式（ Pattern ）对象，供 match() 和 search() 这两个函数使用。
+				参数:
+					pattern : 一个字符串形式的正则表达式
+					flags : 可选，表示匹配模式，比如忽略大小写，多行模式等，具体参数为：
+						re.I 忽略大小写
+						re.L 表示特殊字符集 \w, \W, \b, \B, \s, \S 依赖于当前环境
+						re.M 多行模式
+						re.S 即为 . 并且包括换行符在内的任意字符（. 不包括换行符）
+						re.U 表示特殊字符集 \w, \W, \b, \B, \d, \D, \s, \S 依赖于 Unicode 字符属性数据库
+						re.X 为了增加可读性，忽略空格和 # 后面的注释
+			re.findall(string[, pos[, endpos]])	# match 和 search 是匹配一次 findall 匹配所有
+				参数:
+					string : 待匹配的字符串。
+					pos : 可选参数，指定字符串的起始位置，默认为 0。
+					endpos : 可选参数，指定字符串的结束位置，默认为字符串的长度。
+			re.finditer(pattern, string, flags=0) # 和findall类似，在字符串中找到正则表达式所匹配的所有字串，并把他们作为一个迭代器返回。
+				参数:
+					pattern    匹配的正则表达式
+					string    要匹配的字符串。
+					flags    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：正则表达式修饰符 - 可选标志
+			re.split(pattern, string[, maxsplit=0, flags=0])	# split方法按照能够匹配的子串讲字符串分割后返回列表
+				参数:
+					pattern    匹配的正则表达式
+					string    要匹配的字符串。
+					maxsplit    分隔次数，maxsplit=1 分隔一次，默认为 0，不限制次数。
+					flags    标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：正则表达式修饰符 - 可选标志
+		2.正则表达式模式(正则表达式写法,pattern参数写法)
+			2.1.匹配一个字符
+	            .   :匹配任意一个字符(除换行\n外)       可使用re.match(正则表达式，要匹配的字符串,re.S) 让。匹配到空格
+	            [范围一，范围二,范围N]   :匹配范围一，范围二，范围N内的任意一个字符
+	            \d  :匹配一个数字，相当于[0-9]
+	            \D  :匹配一个非数字
+	            \s  :匹配一个空格或Tab
+	            \S  :匹配一个非空格或Tab
+	            \w  :匹配一个字符也可匹配中文和其它语言的文字    以英文为例相当于[A-Za-Z0-9_]  (解释:匹配A到Z 或 a到z 或 0到9 或 _ 中的任一个字符)
+	            \W  :匹配一个非字符
+	        2.2.匹配多个字符
+	            {num1,num2}     :前一个字符匹配num1到num2个      eg: \d{1,3}   匹配前1到3个数字
+	            {num}           :前一个字符匹配的个数大于等于num个     eg：\d{4}    匹配前4个数字
+	            ？              :前一个字符可有可无                   eg：[aA]?    a或A可有可无
+	            *               :前一个字符匹配0到N个(可以匹配空字符串)         eg：re.match(r".*","")  有匹配结果
+	            +               :前一个字符匹配1到N个(不可以匹配空字符串)        eg：re.match(r".+","")  无匹配结果
+	        2.3.匹配开头结尾
+	            ^       :匹配开头(python默认匹配开头)
+	            $       :匹配结尾，当正则表达式结束时字符串结束
+
+	            正则表达式的标准写法  :   re.match(r"^正则表达式$","字符串"[，re.S])
+	        2.4.正则表达式的分组使用小括号()实现
+	            eg:ret = re.match(r"^(\d*)(\D*)$","1111aaaa")
+	                ret.group(0)    结果:1111
+	                ret.group(1)    结果:aaaa
+	                        选择匹配:使用|实现     eg: (163|162)   代表匹配163或162     (^\)匹配到非斜杆
+	            注意正则表达式的分组可以在正则表达式内部引用，也可给分组命名并引用:
+	                eg：1.直接引用
+	                      re.match(r"<\w*>.*<\1>"，"<ha>aaa<ha>")                     结果:   <ha>aaa<ha>
+	                      re.match(r"<\w*><\w*>.*<\2><\1>","<ha1><ha2>aaa<ha2><ha1>")               结果:  <ha1><ha2>aaa<ha2><ha1>
+	                    2.命名引用
+	                        (?P<name>表达式)     命名
+	                        (?P=p1)              引用
+	                        re.match(r"<(?P<p1>\w*)>.*<(?P=p1)>","<ha1>aaa<ha1>")        结果:<ha1>aaa<ha1>
+	        2.5.总结
+	        	^    匹配字符串的开头
+				$    匹配字符串的末尾。
+				.    匹配任意字符，除了换行符，当re.DOTALL标记被指定时，则可以匹配包括换行符的任意字符。
+				[...]    用来表示一组字符,单独列出：[amk] 匹配 'a'，'m'或'k'
+				[^...]    不在[]中的字符：[^abc] 匹配除了a,b,c之外的字符。
+				re*    匹配0个或多个的表达式。
+				re+    匹配1个或多个的表达式。
+				re?    匹配0个或1个由前面的正则表达式定义的片段，非贪婪方式
+				re{ n}    精确匹配 n 个前面表达式。例如， o{2} 不能匹配 "Bob" 中的 "o"，但是能匹配 "food" 中的两个 o。
+				re{ n,}    匹配 n 个前面表达式。例如， o{2,} 不能匹配"Bob"中的"o"，但能匹配 "foooood"中的所有 o。"o{1,}" 等价于 "o+"。"o{0,}" 则等价于 "o*"。
+				re{ n, m}    匹配 n 到 m 次由前面的正则表达式定义的片段，贪婪方式
+				a| b    匹配a或b
+				(re)    匹配括号内的表达式，也表示一个组
+				(?imx)    正则表达式包含三种可选标志：i, m, 或 x 。只影响括号中的区域。
+				(?-imx)    正则表达式关闭 i, m, 或 x 可选标志。只影响括号中的区域。
+				(?: re)    类似 (...), 但是不表示一个组
+				(?imx: re)    在括号中使用i, m, 或 x 可选标志
+				(?-imx: re)    在括号中不使用i, m, 或 x 可选标志
+				(?#...)    注释.
+				(?= re)    前向肯定界定符。如果所含正则表达式，以 ... 表示，在当前位置成功匹配时成功，否则失败。但一旦所含表达式已经尝试，匹配引擎根本没有提高；模式的剩余部分还要尝试界定符的右边。
+				(?! re)    前向否定界定符。与肯定界定符相反；当所含表达式不能在字符串当前位置匹配时成
+				(?> re)    匹配的独立模式，省去回溯。
+				\w    匹配字母数字及下划线
+				\W    匹配非字母数字及下划线
+				\s    匹配任意空白字符，等价于 [\t\n\r\f].
+				\S    匹配任意非空字符
+				\d    匹配任意数字，等价于 [0-9].
+				\D    匹配任意非数字
+				\A    匹配字符串开始
+				\Z    匹配字符串结束，如果是存在换行，只匹配到换行前的结束字符串。
+				\z    匹配字符串结束
+				\G    匹配最后匹配完成的位置。
+				\b    匹配一个单词边界，也就是指单词和空格间的位置。例如， 'er\b' 可以匹配"never" 中的 'er'，但不能匹配 "verb" 中的 'er'。
+				\B    匹配非单词边界。'er\B' 能匹配 "verb" 中的 'er'，但不能匹配 "never" 中的 'er'。
+				\n, \t, 等.    匹配一个换行符。匹配一个制表符。等
+				\1...\9    匹配第n个分组的内容。
+				\10    匹配第n个分组的内容，如果它经匹配。否则指的是八进制字符码的表达式。
+	    3.正则对象及其一些方法
+	    	re.RegexObject
+				re.compile() 返回 RegexObject 对象。
+			re.MatchObject
+				re.match(),re.search(),re.sub(),re.find(),re.findall()均返回该对象
+				group() 返回被 RE 匹配的字符串。
+			    start() 返回匹配开始的位置
+			    end() 返回匹配结束的位置
+			    span() 返回一个元组包含匹配 (开始,结束) 的位置
+			正则表达式修饰符 - 可选标志
+				正则表达式可以包含一些可选标志修饰符来控制匹配的模式。修饰符被指定为一个可选的标志。多个标志可以通过按位 OR(|) 它们来指定。如 re.I | re.M 被设置成 I 和 M 标志
+				re.I    使匹配对大小写不敏感
+				re.L    做本地化识别（locale-aware）匹配
+				re.M    多行匹配，影响 ^ 和 $
+				re.S    使 . 匹配包括换行在内的所有字符
+				re.U    根据Unicode字符集解析字符。这个标志影响 \w, \W, \b, \B.
+				re.X    该标志通过给予你更灵活的格式以便你将正则表达式写得更易于理解。
+	threading:多线程
+		threading.Thread(target=函数名,args=(参数元组))	#返回进程对象
+		threadingobj.start()							#启动进程
+		threading.enumerate()							#返回当前进行的进程数
+		threading.Lock()								#返回互斥数锁对象
+		threadingLockobj.acquire()						#将互斥锁对象锁死
+		threadingLockobj.release()						#将互斥锁对象解锁
+	multiprocessing:多进程
+		普通进程:
+			multiprocessing.Process(target=函数名，args=(参数元组))	#返回进程对象
+			multiprocessingobj.start()								#开始multiprocessingobj进程对象
+		队列:数据先进先出,进程间数据沟通
+			qu = multiprocessing.Queue(num)    	#创建队列  (num：队列最多的数据个数可有可无；无num时默认是最大值(最大值根据电脑而定))
+            qu.put()                            #队列中放数据
+            qu.get()                            #取出队列中的数据
+            qu.full()                           #判断队列数据是否已满
+            qu.empty()                          #判断队列中的数据是否为空
+        进程池:控制同一时间时的进程个数
+        	po = multiprocessing.Pool(num)          		#创建进程个数为num个的进程池
+            po.apply_async(func=函数名，args=(参数元组))		#向进程池当中放进程
+            po.close()                              #关闭进程池，不再向进程池当中放进程
+            po.join()                               #等待进程池内的进程全部结束(须放在close之后)
+    协程:
+    	1.可迭代对象:
+    	可用循环语句来遍历的即为可迭代对象
+    		结构:
+    			class Iterable(object):
+    				def __iter__(self):
+    					pass
+    				def __next__(self):
+    					pass
+    			用循环语句遍历时:
+    				执行__iter__,并返回值---->执行__next__---->执行__iter__,并返回值---->执行__next__---->...
+    	2.yield:一种特殊的可迭代对象
+    		def  function():
+	           	someting1
+	            while True:
+	            	something2
+	                outsideget = yield value
+	                something3
+	        执行过程:
+	        	a = function()	#获取yield传出值value,函数外部获取函数内部值
+	        	a.send(arg1)	#将arg1传给yield,执行something2,结果使outsideget = arg1,不执行something3,函数内部获取函数外部值
+	        	a.next(arg2)	#将arg2传给yield,执行something3,再执行something2,结果使outsideget = arg2,不执行something3,函数内部获取函数外部值
+        	1)send(arg1)或next(arg1)函数启动迭代器--->执行something1--->执行something2--->
+        		遇到yield,将value返回给外部,并停止运行--->
+        	2)send(arg2)或next(arg2)--->yield获取外部的参数,outsideget = arg2,函数再启动--->执行something3--->执行something2--->
+        		遇到yield,将value返回给外部,并停止运行--->
+        	3)send(arg3)或next(arg3)--->yield获取外部的参数,outsideget = arg3,函数再启动--->执行something3
+        3.协程:迭代器+多线程(在两个函数间来回快速切换)
+        	greenlet:
+        		gr = greenlet.greenlet(函数名)	#创建协程对象
+        		gr1.switch()					#转到gr1协程对象
+        		gr2.switch()					#转到gr1协程对象
+        	grevent:
+        		ge = gevent.spawn(函数名)		#创建协程对象
+	            ge.join()						#开始ge协程对象,并等待其结束
+	            gevent.joinall([gevent.spawn生成对象的列表])		#开始列表中的协程对象,并等待其全部执行完
+	            注意点: 使用延时方法时需要替换为gevent.xxxxx    eg:time.sleep(1)------>gevent.sleep(1);
+	                    或打补丁添加monkey.patch_all()自动将代码中的延时操作替换为gevent.xxxxx
+	                    monkey导入方法from gevent import monkey
+	            gevent遇到延时操作时会自动切换代码:
+	            	解决办法:
+	            		1)将所有延时操作替换为gevent.xxxxx    eg:time.sleep(1)------>gevent.sleep(1);
+	            		2)from gevent import monkey
+	            		  monkey.patch_all()
+	socker:
+		UDP:
+			创建UDP套接字-->绑定ip:prot-->接受/发送数据-->关闭UDP套接字
+			udp_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)			#创建UDP套接字
+			udp_socker.bind(("ip",port))											#UDP绑定ip:port
+			udp_socket.sendto(data,("ip",port))										#UDP发送数据至ip:port
+			udp_socket.recvfrom(size)												#UDP获取size大小数据
+			udp_socker.close()														#关闭UDP套接字
+		TCP服务器:
+			创建TCP套接字-->绑定ip:prot-->修改为监听模式-->接受客户端TCP套接字请求-->给客户端TCP套接字发数据-->关闭套接字
+			tcp_server_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)		#创建TCP套接字
+			tcp_server_socket.bind(("ip",port))											#绑定ip:port
+			tcp_server_socket.listen()													#修改为监听模式
+			tcp_server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)		#修改服务器端口为可重复使用,重启服务器时不堵塞
+			tcp_server_socket.setblocking(False)										#修改服务器套接字为非堵塞状态,当accept函数等待时间过长时(无客户端请求)报错
+			tcp_client_scoket = tcp_server_socket.accept()								#获取客户端请求的套接字
+			tcp_client_scoket.recv(size)												#获取客户端请求size大小的数据
+			tcp_client_scoket.send(data)												#发送数据给客户端套接字
+			tcp_server_scoket.close()													#关闭服务器TCP套接字
+		TCP客户端:
+			创建TCP套接字-->绑定ip:port-->
+			tcp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)		#创建TCP套接字
+			tcp_client_client.connect(("ip",port))										#链接服务器ip:port
+			tcp_client_socket.send(data)												#向服务器发送请求数据
+			tcp_client_socket.recv(size)												#获取服务器数据
+			tcp_client_socket.close()													#关闭客户端套接字
+
+
+	            
+
+
+

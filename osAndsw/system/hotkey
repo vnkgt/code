@@ -1,0 +1,39 @@
+快捷键(热键):
+	windows
+	linux
+	software
+		|-vi
+		|-vim
+		|-sublime
+		|-pycharm
+
+windows:
+	win+r===>运行,输入msconfig可以修改windows配置,输入cmd可以打开cmd
+	win+i===>windows设置
+	win+shift+esc===>任务管理器
+	ctrl+alt+delete===>打开windows任务管理器
+	ctrl+c===>复制
+	ctrl+v===>粘贴
+	ctrl+a===>全选
+	ctrl+z===>上一步操作
+	ctrl+y===>下一步操作
+	ctrl+s===>保存
+	win+PrtSc===>截屏保存至"此电脑>图片>截屏"
+	win+alt+PrtSc===>截屏保存至"此电脑>视频>捕获"
+	win+shift+s===>截屏,ctrl+v保存至指定路径
+	
+
+
+
+linux:
+	系统:
+        强行切换到命令行系统(CLI):
+            ctrl+alt+F1
+            ctrl+alt+F2
+            ctrl+alt+F3
+            ctrl+alt+F4
+            ctrl+alt+F5
+            ctrl+alt+F6
+        强行切换到桌面系统(GUI):
+            ctrl+alt+F7
+	ctrl+alt+t===>打开terminal终端

@@ -1,0 +1,37 @@
+//针对PATH环境变量
+配置环境变量:
+    windows:
+        1.点击添加:
+            右键"此电脑"===>"高级系统设置"===>"高级"===>"环境变量"===>编辑"Path"环境变量===>"新建"===>写新环境变量名
+        2.在cmd窗口中set设置的环境变量为临时变量，如：
+            set PATH=%PATH%;新的环境变量
+        3.使用setx设置为永久环境变量,适用于bat中：
+            setx PATH "%PATH%;新的环境变量"
+    linux:
+        1.临时有效,只对当前shell有效
+            控制台(终端/shell)输入:$PATH="$PATH:your path1:your path2 ..."
+        2.针对所有计算机用户
+            修改/etc/profile文件,在文件末尾添加
+            export PATH="$PATH:your path1:your path2 ..."
+            修改后运行命令"source /etc/profile"
+        3.针对某个计算机用户
+            修改/etc/bach.bashrc文件,在文件末尾添加
+            export PATH="$PATH:your path1:your path2 ..."
+            修改后运行命令"source /etc/bash.bashrc"
+查看环境变量:
+    window:
+        set查看所有环境变量
+        set path查看path环境变量
+        path查看path环境变量
+    linux:
+        set命令显示当前shell的变量，包括当前用户的变量,set主要用来设置sh的参数与选项
+        env命令显示当前用户的变量，env用来在构建的环境中运行命令
+        export命令显示当前导出成用户变量的shell变量
+        echo $<变量名>显示某个环境变量名
+
+
+常用编译器的环境变量配置:
+    windows:
+        windows_cmd:c:/Windows/System32
+        python:python.exe所在目录 和 python/Scripts
+        c_mingw:mingw/bin

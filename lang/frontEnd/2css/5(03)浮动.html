@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+浮动(float)特性:
+	1.浮动元素有左移(float:left;)右移(float:right;)
+	2.浮动元素会向左或右浮动,碰到父元素边界或其他元素才会停下
+	3.相邻浮动单元可以并在一行,超出父元素布边界就换行
+	4.浮动使行内元素或块元素自动转换为内联块元素
+	5.浮动元素A其后的部浮动元素B,B会占据A的位置,B中的文字会绕开A,形成文字绕图的效果
+	6.盒子嵌套时,父容器没有设置大小(一般是不设置高度),子容器整体浮动无法撑开父容器,父元素需要清除浮动
+	7.浮动元素间无margin的垂直合并
+浮动可选值:
+	左浮动		float:left;
+	右浮动		float:right;
+ -->
+<head>
+	<meta charset="UTF-8">
+	<title>5(03)浮动</title>
+	<style>
+		/*父容器*/
+		.boxfather{
+			width: 700px;
+			height: 800px;
+			margin: 100px auto;
+			background-color: #111;
+			border: 1px #000 solid;
+		}
+
+		/*子容器一*/
+		.boxson1{
+			width: 200px;
+			height: 300px;
+			background-color: green;
+			border: 1px #000 solid;
+			/*左浮动*/
+			float:left;
+		}
+
+		/*子容器二*/
+		.boxson2{
+			width: 200px;
+			height: 300px;
+			background-color: gold;
+			border: 1px #000 solid;
+			/*右浮动*/
+			float:right;
+		}
+	</style>
+</head>
+<body>
+	<div class="boxfather">
+		<div class="boxson1"></div>
+		<div class="boxson2"></div>
+	</div>
+</body>
+</html>

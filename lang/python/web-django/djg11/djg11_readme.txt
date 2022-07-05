@@ -1,0 +1,10 @@
+1.文件上传
+    0)配置setting.py
+        MEDIA_ROOT
+    1)通过浏览器登录后台上传
+        admin.py
+        models.py
+        static/media/Img_Admin
+    2)通过浏览器客户上传
+        template/temp/client_upload_html.html
+        static/media/Img_Client

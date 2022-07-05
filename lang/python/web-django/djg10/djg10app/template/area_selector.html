@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax省市县选择测试</title>
+
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            //获取province,city,county的下拉列表框
+            province = $("#province");
+            city = $("#city");
+            county = $("#county");
+            //发起一个ajax请求,请求省份数据"/province"
+            //使用get回传
+            $.get("/province",function (data) {
+                //回调函数
+                //获取视图函数返回的json数据
+                province_res = data.province_data;
+                // //变量res数据[[area.id,area.name],]
+                // for(i=0;i<res.length;i++) {
+                //     id = res[i][0];
+                //     province_name = res[i][1];
+                //     option_str = '<option value="'+id+'">' + province_name + '</option>';
+                //     //先province下拉列表框中添加数据
+                //     province.append(option_str);
+                // }
+                $.each(province_res, function (index, item) {
+                    id = item[0];
+                    province_name = item[1];
+                    option_str = "<option value='" + id + "'>" + province_name + "</option>";
+                    province.append(option_str);
+                });
+            });
+
+
+            //市选择绑定province下拉列表框的change事件,获取省的id,请求视图函数获取下面市的信息
+            $("#province").change(function () {
+                //重新请求市时清空市和县的信息
+                city.empty().append("<option>---选择市---</option>");
+                county.empty().append("<option>---选择县---</option>");
+                //获取点击省的id
+                province_id = $(this).val();
+                $.get('/city'+province_id, function (data) {
+                    //获取市的信息
+                    city_res = data.city_data;
+                    $.each(city_res,function (index,item) {
+                        id = item[0];
+                        city_name = item[1];
+                        option_str = "<option value='"+id+"'>"+city_name+"</option>";
+                        city.append(option_str);
+                    });
+                })
+            });
+
+            //县选择绑定city下拉列表框的change事件,获取市的id,请求视图函数获取下面县的信息
+            $("#city").change(function () {
+                //获取点击市的id
+                city_id = $(this).val();
+                $.get('/county'+city_id, function (data) {
+                    //获取市的信息
+                    county_res = data.county_data;
+                    $.each(county_res,function (index,item) {
+                        id = item[0];
+                        county_name = item[1];
+                        option_str = "<option value='"+id+"'>"+county_name+"</option>";
+                        county.append(option_str);
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <select id="province">
+        <option>---选择省---</option>
+    </select>
+    <select id="city">
+        <option>---选择市---</option>
+    </select>
+    <select id="county">
+        <option>---选择县---</option>
+    </select>
+
+
+</body>
+</html>

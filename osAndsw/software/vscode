@@ -1,0 +1,9 @@
+//插件
+Chinese:汉化包
+Code Runner:代码调试软件,调试时启动
+open in browser:在浏览器中打开,在文件中右键选择Open in Default Browser(默认浏览器打开)/Open in other Browser(其他浏览器打开)
+MASM/TASM:汇编开发环境,(asm文件中)右键选择调试
+
+//更改插件位置
+打开方式命令:
+    Code.exe路径 --extensions-dir 插件文件夹所在路径

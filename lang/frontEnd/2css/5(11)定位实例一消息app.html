@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>5(11)定位实例一</title>
+	<style>
+		.con{
+			width: 100px;
+			height: 100px;
+			margin: 100px auto;
+			background-color: gold;
+			border: 2px #000 solid;
+			line-height: 100px;
+			text-align: center;
+			/*圆边,写圆的半径大小*/
+			border-radius: 15px;
+			/*定位*/
+			position: relative;
+		}
+		.box{
+			width: 40px;
+			height: 40px;
+			background-color: red;
+			color: #000;
+			line-height: 30px;
+			text-align: center;
+			/*圆边,写圆的半径大小*/
+			border-radius: 20px; 
+			/*定位*/
+			position: absolute;
+			top:-20px;
+			right: -20px;
+		}
+	</style>	
+</head>
+<body>
+	<div class="con">
+		app
+		<div class="box">5</div>
+	</div>
+</body>
+</html>

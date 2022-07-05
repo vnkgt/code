@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+1.margin-top塌陷:
+	父容器套子容器时,子容器的margin-top失效
+2.margin-top解决方法:
+	2.1.父容器继承伪元素类:
+		.clearfix:before{
+			context:"";
+			display:table;
+		}
+	2.2.父容器添加属性:
+		overfloat:hidden;
+	2.3.父容器添加边框:
+		border:宽度 颜色 线的样式;
+ -->
+<head>
+	<meta charset="UTF-8">
+	<title>4(01)margin-top塌陷</title>
+	<style>
+		/*解决margin-top塌陷的伪元素类*/
+		.clearfix:before{
+			content:"";
+			display: table;
+		}
+		/*父容器*/
+		.box_father{
+			background-color: green;
+			width: 300px;
+			height: 400px;
+		}
+		/*子容器*/
+		.box_son{
+			background-color: blue;
+			width: 200px;
+			height: 200px;
+			margin-top: 100px; 
+		}
+	</style>
+</head>
+<body>
+<!--1.伪元素类-->
+<h2>方法一:父容器继承伪元素类</h2>
+	<div class="box_father clearfix">
+		<div class="box_son">
+		</div>
+	</div>
+	<br>
+<!-- 2.外边框-->
+<h2>方法二:父容器加外边框</h2>
+	<div class="box_father" style="border:#000 5px solid;">
+		<div class="box_son"></div>
+	</div>
+	<br>
+<!-- 3.overflow:hidden;-->
+<h2>方法三:父容器添加属性overflow:hidden;</h2>
+	<div class="box_father" style="overflow: hidden;">
+		<div class="box_son"></div>
+	</div>
+<!-- 0.magin-top塌陷 -->
+<h2>marign-top塌陷</h2>
+	<div class="box_father">
+		<div class="box_son"></div>
+	</div>
+	<br>
+</body>
+</html>

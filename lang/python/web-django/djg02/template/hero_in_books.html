@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hero</title>
+</head>
+<body>
+{{hbook}}
+    <h2>
+        {%for hero in heros%}
+            <h3>{{hero.hname}}--{{hero.hbook}}</h3>
+        {%empty%}
+            <h3>为空!</h3>
+        {%endfor%}
+    </h2>
+</body>
+</html>

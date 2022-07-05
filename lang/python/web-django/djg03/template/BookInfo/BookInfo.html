@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>默认书目录</title>
+</head>
+<a href="/bookinfo_add">添加</a>
+<body>
+    {%for book in books%}
+    <h3>{{book.id}}---{{book.bookname}}-----{{book.book_sup}}-----{{book.book_com}}-----{{book.bookdate}}===><a href="/bookinfo_del{{book.id}}"> 删除 </a></h3>
+    {%endfor%}
+</body>
+</html>

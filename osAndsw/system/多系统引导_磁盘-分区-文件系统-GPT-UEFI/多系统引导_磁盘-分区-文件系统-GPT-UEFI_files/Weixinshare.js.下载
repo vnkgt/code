@@ -1,0 +1,135 @@
+jQuery(function(){
+    var url = location.href.split('#')[0];
+    var weChatImg = {
+        '/purchasing_season/index.html' : '/activity/purchasing_season.jpg',
+        '/businesscloud/index.html' : '/activity/businesscloud.jpg',
+        '/fcservices/index.html' : '/activity/fcservices.jpg',
+        '/bms_discount/index.html' : '/activity/bms_discount.jpg',
+        '/openservice/index.html' : '/activity/openservice.jpg',
+        '/midyear_promotion/index.html' : '/activity/midyear_promotion.jpg',
+    }
+
+    if(isWeiXin() && inWhitelist()) {
+
+        function removeTicket(uri) {
+            var index = uri.indexOf('?');
+            if (index === -1) {
+                return uri;
+            }
+            var path = uri.substring(0, index), q = uri.substring(index+1) || '';
+            q = q.replace(/ticket=[^&]*&?/, '').replace(/locale=[^&]*&?/, '');
+            if (q) {
+                return path + '?' + q;
+            }
+            return path;
+        }
+
+        jQuery.get( 'https://portal.huaweicloud.com/api/weixin/get-sign-package', {"url": encodeURIComponent(url)}, function (data) {
+            if (data.code == 0) {
+                wx.config({
+                    debug: false,
+                    appId: data.data.appId,
+                    timestamp: data.data.timestamp,
+                    nonceStr: data.data.nonceStr,
+                    signature: data.data.signature,
+                    jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline'
+                        // 所有要调用的 API 都要加到这个列表中
+                    ]
+                });
+
+            }
+        }, 'json');
+        var title = jQuery(document).attr("title");
+
+        var desc=document.querySelector('meta[name="description"]').getAttribute('content');
+        var pathname = window.location.pathname.replace(/^\/(en-us\/)?/, '').replace(/\/$/, '');
+        var pathname_split = pathname.split('/');
+        var prefix = pathname_split.shift();
+        var hostname = window.location.hostname;
+
+        var default_uri = "https://www.huaweicloud.com/content/dam/cloudbu-site/archive/commons/web_resoure/cms/static/js/wechat/huawei.jpg";
+        
+        var regContent= /<img(?:.|\s)*?>/g;
+        var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+        var imgContent = '';
+        var img='';
+        
+
+        if(imgContent.replace(/(^s*)|(s*$)/g, "").length == 0){
+            if (hostname === 'www.huaweicloud.com' && (prefix === 'product' || prefix === 'solution')) {
+                var uri = pathname_split.join('.').replace(/(\.index)?\.html/i, '') || 'index';
+                get_image("https://www.huaweicloud.com/content/dam/cloudbu-site/archive/commons/web_resoure/cms/static/js/wechat/" + prefix + '/' + uri + ".jpg")
+            }
+            else if (hostname === 'activity.huaweicloud.com') {
+                var uri = pathname.split('/').join('.').replace(/(\.index)?\.html/i, '') || 'index';
+                get_image("https://www.huaweicloud.com/content/dam/cloudbu-site/archive/commons/web_resoure/cms/static/js/wechat/activity/" +  uri + ".jpg?20180223")
+            } else {
+                initWechatEvent(default_uri)
+            }
+        }
+        else{
+            img=imgContent[0].match(srcReg)[1];
+            initWechatEvent(img);
+        }
+        
+
+        function get_image(special_uri) {
+        	var defualt = "https://www.huaweicloud.com/content/dam/cloudbu-site/archive/commons/web_resoure/cms/static/js/wechat/huawei.jpg";
+            var wechat_image = new Image();  
+            wechat_image.onload=function(){
+                initWechatEvent(defualt)
+            };  
+            wechat_image.onerror=function(){
+                initWechatEvent(defualt)
+            };  
+            wechat_image.src = defualt;
+        }
+
+        function initWechatEvent(image_url) {
+            wx.ready(function () {
+                wx.onMenuShareAppMessage({
+                    title: title,
+                    desc: desc,
+                    link: url,
+                    imgUrl: image_url,
+                    type: '',
+                    dataUrl: '',
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+                wx.onMenuShareTimeline({
+                    title:title,
+                    link: url,
+                    imgUrl:image_url,
+                    desc:desc,
+                    dataUrl:'',
+                    type:'',
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+            })
+        }
+    }
+})
+
+function isWeiXin() {
+    var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function inWhitelist() {
+    var d = document.domain
+    return  (d === 'www.huaweicloud.com' || d === 'activity.huaweicloud.com' || d === 'support.huaweicloud.com')
+}

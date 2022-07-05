@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页测试</title>
+</head>
+<body>
+    {#显示地区信息#}
+    {% for area in areas %}
+        <h3>{{area.name}}</h3>
+    {% endfor %}
+
+    {#上一页#}
+    <h4>
+        {% if areas.has_previous %}     {#如果分页对象有上一页#}
+            <a href='/show_area{{ areas.previous_page_number }}'>&lt;上一页</a>
+        {% endif %}
+    </h4>
+
+    {#显示页码#}
+    <h4>
+        {% for i in areas.paginator.page_range %}     {#areas.paginator.page_range：areas分页对象的总页数#}
+            <a href="/show_area{{i}}">{{i}}</a>
+        {% endfor %}
+    </h4>
+
+    {#下一页#}
+    <h4>
+        {% if areas.has_next %}     {#如果分页对象有下一页#}
+            <a href='/show_area{{ areas.next_page_number }}'>下一页&gt;</a>
+        {% endif %}
+    </h4>
+
+</body>
+</html>

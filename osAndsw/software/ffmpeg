@@ -1,0 +1,337 @@
+常用:
+	1.剪切视频
+		从00:01:30总共00:30:00
+		ffmpeg -i input.mp4 -ss 00:01:30 -t 00:30:00 out.mp4
+	2.修改格式
+		ffmpeg -i input.avi output.mp4
+	3.视频转图片
+		ffmpeg -i input.mp4 ./output/output%0.3d.jpg
+	4.视频转图片
+		ffmpeg -i input%0.3d.jpg output.mp4
+	5.视频提取音频
+		ffmpeg -i input.mp4 output.mp3
+	6.视频添加字幕
+		ffmpeg -i input.mp4 -i input.ass output.mp4
+	常用参数:
+		-h	帮助
+		-formats	显示可用的格式、编解码、协议等
+		-c	音视频编解码器
+		-i D:\input.mp4	指定输入的文件
+		-f mp4	指定格式为mp4
+		-r 30	指定帧率为30，默认为25
+		-b 300	指定比特率为300，默认为200
+		-s 480*480	指定分辨率为480×480，默认为168×128
+		-aspect 4:3	指定纵横比4:3
+		-fs 10MB	指定文件大小为10MB
+		-intra	指定所有帧为关键帧，便于精确剪辑
+		-vcodec h264	指定视频编码方式为h.264
+		-acodec aac	指定音频编码方式为aac
+		-ac <数值>	指定声道数，1就是单声道，2就是立体声
+		-ar <采样率>	指定声音采样率，PSP只认24000
+		-ab <比特率>	指定定声音比特率
+		-vol <百分比>	指定音量
+		-y	覆盖输出文件
+		-ss 00:00:00	定位到指定时间位置
+		-t 00:00:00	持续时间
+		-codec copy	所有编码不变
+		-vcodec copy	视频编码不变
+		-acodec copy	音频编码不变
+		-sameq	视频质量不变
+		-vn	删掉视频流
+		-an	删掉音频流
+		-map 0	输入所有数据流
+		-map 0:0	输入第1个数据流，一般为视频流，0:1为第2个数据流；此命令输几次就输出文件就多几个数据流，按输入先后顺序在输出视频依次排序
+		-map 0:v	输入所有视频流
+		-map 0:a:1	输入第2个音频流
+		-c copy	所有数据流不变
+		-c:v copy	视频编码不变
+		-c:a:0 libmp3lame	指定第一个音频流的编码为mp3
+		-b:a:0 128k	指定第一个音频流的比特率为128k
+		-c:s copy	字幕不变
+
+参数:
+	FFMPEG获得帮助：
+		-h - 打印基本选项
+		-h long - 打印更多选项
+		-h full - 打印所有选项（包括所有格式和编解码器特定选项，非常长）
+		-h type = name - 打印指定解码器/编码器/解复用器/ muxer / filter的所有选项
+		有关选项的详细说明，请参见man ffmpeg。
+		打印帮助/信息/功能：
+		-L显示许可证
+		-h主题显示帮助
+		- ？主题显示帮助
+		-help主题显示帮助
+		--help主题显示帮助
+		-version显示版本
+		-buildconf显示构建配置
+		-formats显示可用格式
+		-muxers显示可用的复用器
+		-demuxers显示可用的解复用器
+		-devices显示可用的设备
+		-codecs显示可用的编解码器
+		-decoders显示可用的解码器
+		-encoders显示可用的编码器
+		-bsfs显示可用的位流过滤器
+		- 协议显示可用的协议
+		-filters显示可用的过滤器
+		-pix_fmts显示可用的像素格式
+		-layouts显示标准通道布局
+		-sample_fmts显示可用的音频样本格式
+		-colors显示可用的颜色名称
+		-sources设备列出输入设备的源
+		-sinks设备列表输出设备的接收器
+			-hwaccels显示可用的硬件加速方法
+	全局选项（影响整个程序而不仅仅是一个文件：
+		-loglevel loglevel设置日志记录级别
+		-v loglevel设置日志记录级别
+		-report生成报告
+		-max_alloc bytes设置单个已分配块的最大大小
+		-y覆盖输出文件
+		-n永远不会覆盖输出文件
+		-ignore_unknown忽略未知的流类型
+		-filter_threads非复杂过滤器线程的数量
+		-filter_complex_threads -filter_complex的线程数
+		-stats在编码期间打印进度报告
+		-max_error_rate错误率（0.0：无错误，1.0：100％错误最大错误率
+		-bits_per_raw_sample number设置每个原始样本的位数
+		-vol音量改变音量（256 =正常）
+	每个文件的主要选项：
+		-f fmt force格式
+		-c编解码器编解码器名称
+		-codec编解码器编解码器名称
+		- pre preset  预设预设名称
+		-map_metadata outfile [，metadata]：infile [，metadata]设置来自infile的outfile的元数据信息
+		-t持续时间记录或转码音频/视频的“持续时间”秒
+		-to time_stop记录或转码停止时间
+		-fs limit_size设置限制文件大小（以字节为单位）
+		-ss time_off设置开始时间偏移量
+		-sseof time_off设置相对于EOF的开始时间偏移量
+		-seek_timestamp使用-ss启用/禁用时间戳搜索
+		-timestamp time设置录制时间戳（'now'设置当前时间）
+		-metadata string = string add metadata
+		-program title = string：st = number ...用指定的流添加程序
+		-target type指定目标文件类型（“vcd”，“svcd”，“dvd”，“dv”或“dv50”，带有可选前缀“pal-”，“ntsc-”或“film-”）
+		-apad音频垫
+		-frames number设置要输出的帧数
+		-filter filter_graph set stream filtergraph
+		-filter_script filename从文件中读取流过滤器描述
+		-reinit_filter对输入参数更改重新启动filtergraph
+		-discard            丢弃
+		-disposition       配置
+	FFMPEG视频选项：
+		-vframes number设置要输出的视频帧数
+		-r速率设置帧速率（Hz值，分数或缩写）
+		-s size设置框架大小（WxH或缩写）
+		- 方面设定宽高比（4：3,16：9或1.3333,1.77777）
+		-bits_per_raw_sample number设置每个原始样本的位数
+		-vn禁用视频
+		-vcodec编解码器强制视频编解码器（'复制'复制流）
+		-timecode hh：mm：ss [：;。] ff设置初始TimeCode值。
+		-pass n 选择通行证号码（1到3）
+		-vf filter_graph 设置视频过滤器
+		-ab 比特率音频比特率（请使用-b：a）
+		-b 比特率视频比特率（请使用-b：v）
+		-dn 禁用数据
+		FFMPEG音频选项：
+		-frames number设置要输出的音频帧数
+		-aq质量设置音频质量（特定于编解码器）
+		-ar rate set audio sampling rate（Hz）
+		-ac通道设置音频通道数
+		- 禁用音频
+		-acodec编解码器强制音频编解码器（'复制'到复制流）
+		-vol音量改变音量（256 =正常）
+		-af filter_graph设置音频过滤器
+	FFMPEG字幕选项：
+		-s size设置框架大小（WxH或缩写）
+		-sn禁用字幕
+		-scodec编解码器强制字幕编解码器（'复制'复制流）
+		-stag fourcc / tag力字幕标签/ fourcc
+		-fix_sub_duration修复字幕持续时间
+		-canvas_size size设置画布大小（WxH或缩写）
+		-spre预设将字幕选项设置为指示的预设
+
+
+一些用法:
+	1. 视频转换
+		比如一个avi文件，想转为mp4，或者一个mp4想转为ts。
+		ffmpeg -i input.avi output.mp4
+		ffmpeg -i input.mp4 output.ts
+
+	2. 提取音频
+		ffmpeg -i test.mp4 -acodec copy -vn output.aac
+		上面的命令，默认mp4的audio codec是aac,如果不是，可以都转为最常见的aac。
+			ffmpeg -i test.mp4 -acodec aac -vn output.aac
+
+	3. 提取视频
+		ffmpeg -i input.mp4 -vcodec copy -an output.mp4
+
+	4. 视频剪切
+		下面的命令，可以从时间为00:00:15开始，截取5秒钟的视频。
+			ffmpeg -ss 00:00:15 -t 00:00:05 -i input.mp4 -vcodec copy -acodec copy output.mp4
+		-ss表示开始切割的时间，-t表示要切多少。上面就是从15秒开始，切5秒钟出来。
+
+	5. 码率控制
+		码率控制对于在线视频比较重要。因为在线视频需要考虑其能提供的带宽。
+
+		那么，什么是码率？很简单：
+		bitrate = file size / duration
+		比如一个文件20.8M，时长1分钟，那么，码率就是：
+		biterate = 20.8M bit/60s = 20.8*1024*1024*8 bit/60s= 2831Kbps
+		一般音频的码率只有固定几种，比如是128Kbps，
+		那么，video的就是
+		video biterate = 2831Kbps -128Kbps = 2703Kbps。
+
+		那么ffmpeg如何控制码率。
+		ffmpg控制码率有3种选择，-minrate -b:v -maxrate
+		-b:v主要是控制平均码率。
+		比如一个视频源的码率太高了，有10Mbps，文件太大，想把文件弄小一点，但是又不破坏分辨率。
+			ffmpeg -i input.mp4 -b:v 2000k output.mp4
+		上面把码率从原码率转成2Mbps码率，这样其实也间接让文件变小了。目测接近一半。
+		不过，ffmpeg官方wiki比较建议，设置b:v时，同时加上 -bufsize
+		-bufsize 用于设置码率控制缓冲器的大小，设置的好处是，让整体的码率更趋近于希望的值，减少波动。（简单来说，比如1 2的平均值是1.5， 1.49 1.51 也是1.5, 当然是第二种比较好）
+			ffmpeg -i input.mp4 -b:v 2000k -bufsize 2000k output.mp4
+
+		-minrate -maxrate就简单了，在线视频有时候，希望码率波动，不要超过一个阈值，可以设置maxrate。
+			ffmpeg -i input.mp4 -b:v 2000k -bufsize 2000k -maxrate 2500k output.mp4
+
+	6. 视频编码格式转换
+		比如一个视频的编码是MPEG4，想用H264编码，咋办？
+			ffmpeg -i input.mp4 -vcodec h264 output.mp4
+		相反也一样
+			ffmpeg -i input.mp4 -vcodec mpeg4 output.mp4
+
+		当然了，如果ffmpeg当时编译时，添加了外部的x265或者X264，那也可以用外部的编码器来编码。（不知道什么是X265，可以 Google一下，简单的说，就是她不包含在ffmpeg的源码里，是独立的一个开源代码，用于编码HEVC，ffmpeg编码时可以调用它。当然 了，ffmpeg自己也有编码器）
+			ffmpeg -i input.mp4 -c:v libx265 output.mp4
+			ffmpeg -i input.mp4 -c:v libx264 output.mp4
+
+	7. 只提取视频ES数据
+		ffmpeg –i input.mp4 –vcodec copy –an –f m4v output.h264
+
+	8. 过滤器的使用
+		8.1 将输入的1920x1080缩小到960x540输出:
+			ffmpeg -i input.mp4 -vf scale=960:540 output.mp4
+		//ps: 如果540不写，写成-1，即scale=960:-1, 那也是可以的，ffmpeg会通知缩放滤镜在输出时保持原始的宽高比。
+
+		8.2 为视频添加logo
+		比如，我有这么一个图片
+		iqiyi logo
+		想要贴到一个视频上，那可以用如下命令：
+			./ffmpeg -i input.mp4 -i iQIYI_logo.png -filter_complex overlay output.mp4
+		结果如下所示：
+		add logo left
+		要贴到其他地方？看下面：
+		右上角：
+			./ffmpeg -i input.mp4 -i logo.png -filter_complex overlay=W-w output.mp4
+		左下角：
+			./ffmpeg -i input.mp4 -i logo.png -filter_complex overlay=0:H-h output.mp4
+		右下角：
+			./ffmpeg -i input.mp4 -i logo.png -filter_complex overlay=W-w:H-h output.mp4
+
+		8.3 去掉视频的logo
+		语法：-vf delogo=x:y:w:h[:t[:show]]
+		x:y 离左上角的坐标
+		w:h logo的宽和高
+		t: 矩形边缘的厚度默认值4
+		show：若设置为1有一个绿色的矩形，默认值0。
+			ffmpeg -i input.mp4 -vf delogo=0:0:220:90:100:1 output.mp4
+		结果如下所示：
+		de logo
+
+	9. 截取视频图像
+			ffmpeg -i input.mp4 -r 1 -q:v 2 -f image2 pic-%03d.jpeg
+		-r 表示每一秒几帧
+		-q:v表示存储jpeg的图像质量，一般2是高质量。
+		如此，ffmpeg会把input.mp4，每隔一秒，存一张图片下来。假设有60s，那会有60张。
+
+		可以设置开始的时间，和你想要截取的时间。
+			ffmpeg -i input.mp4 -ss 00:00:20 -t 10 -r 1 -q:v 2 -f image2 pic-%03d.jpeg
+		-ss 表示开始时间
+		-t 表示共要多少时间。
+		如此，ffmpeg会从input.mp4的第20s时间开始，往下10s，即20~30s这10秒钟之间，每隔1s就抓一帧，总共会抓10帧。
+
+	 
+
+	10. 序列帧与视频的相互转换
+		把darkdoor.[001-100].jpg序列帧和001.mp3音频文件利用mpeg4编码方式合成视频文件darkdoor.avi：
+			$ ffmpeg -i 001.mp3 -i darkdoor.%3d.jpg -s 1024x768 -author fy -vcodec mpeg4 darkdoor.avi
+
+		还可以把视频文件导出成jpg序列帧：
+		$ ffmpeg -i bc-cinematic-en.avi example.%d.jpg
+
+	其他用法
+		1.输出YUV420原始数据
+			对于一下做底层编解码的人来说，有时候常要提取视频的YUV原始数据，如下：
+				ffmpeg -i input.mp4 output.yuv
+
+			那如果我只想要抽取某一帧YUV呢？
+			你先用上面的方法，先抽出jpeg图片，然后把jpeg转为YUV。
+			比如：
+			你先抽取10帧图片。
+				ffmpeg -i input.mp4 -ss 00:00:20 -t 10 -r 1 -q:v 2 -f image2 pic-%03d.jpeg 
+
+			然后，你就随便挑一张，转为YUV:
+				ffmpeg -i pic-001.jpeg -s 1440x1440 -pix_fmt yuv420p xxx3.yuv
+			如果-s参数不写，则输出大小与输入一样。
+
+			当然了，YUV还有yuv422p啥的，你在-pix_fmt 换成yuv422p就行啦！
+
+		2. H264编码profile & level控制
+			背景知识
+			先科普一下profile&level。（这里讨论最常用的H264）
+			H.264有四种画质级别,分别是baseline, extended, main, high：
+				　　1、Baseline Profile：基本画质。支持I/P 帧，只支持无交错（Progressive）和CAVLC；
+				　　2、Extended profile：进阶画质。支持I/P/B/SP/SI 帧，只支持无交错（Progressive）和CAVLC；(用的少)
+				　　3、Main profile：主流画质。提供I/P/B 帧，支持无交错（Progressive）和交错（Interlaced），
+				　　　 也支持CAVLC 和CABAC 的支持；
+				　　4、High profile：高级画质。在main Profile 的基础上增加了8x8内部预测、自定义量化、 无损视频编码和更多的YUV 格式；
+				H.264 Baseline profile、Extended profile和Main profile都是针对8位样本数据、4:2:0格式(YUV)的视频序列。在相同配置情况下，High profile（HP）可以比Main profile（MP）降低10%的码率。
+				根据应用领域的不同，Baseline profile多应用于实时通信领域，Main profile多应用于流媒体领域，High profile则多应用于广电和存储领域。
+
+				下图清楚的给出不同的profile&level的性能区别。
+				profile
+				这里写图片描述
+
+				level
+				这里写图片描述
+
+			2.1 ffmpeg如何控制profile&level
+			举3个例子吧
+				ffmpeg -i input.mp4 -profile:v baseline -level 3.0 output.mp4
+
+				ffmpeg -i input.mp4 -profile:v main -level 4.2 output.mp4
+
+				ffmpeg -i input.mp4 -profile:v high -level 5.1 output.mp4
+
+			如果ffmpeg编译时加了external的libx264，那就这么写：
+			ffmpeg -i input.mp4 -c:v libx264 -x264-params "profile=high:level=3.0" output.mp4
+
+			从压缩比例来说，baseline< main < high，对于带宽比较局限的在线视频，可能会选择high，但有些时候，做个小视频，希望所有的设备基本都能解码（有些低端设备或早期的设备只能解码 baseline），那就牺牲文件大小吧，用baseline。自己取舍吧！
+
+			苹果的设备对不同profile的支持。
+			这里写图片描述
+
+			2.2. 编码效率和视频质量的取舍(preset, crf)
+			除了上面提到的，强行配置biterate，或者强行配置profile/level，还有2个参数可以控制编码效率。
+			一个是preset，一个是crf。
+			preset也挺粗暴，基本原则就是，如果你觉得编码太快或太慢了，想改改，可以用profile。
+			preset有如下参数可用：
+
+			ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow and placebo.
+			编码加快，意味着信息丢失越严重，输出图像质量越差。
+
+			CRF(Constant Rate Factor): 范围 0-51: 0是编码毫无丢失信息, 23 is 默认, 51 是最差的情况。相对合理的区间是18-28.
+			值越大，压缩效率越高，但也意味着信息丢失越严重，输出图像质量越差。
+
+			举个例子吧。
+				ffmpeg -i input -c:v libx264 -profile:v main -preset:v fast -level 3.1 -x264opts crf=18
+			(参考自：https://trac.ffmpeg.org/wiki/Encode/H.264)
+
+			2.3. H265 (HEVC)编码tile&level控制
+			背景知识
+			和H264的profile&level一样，为了应对不同应用的需求，HEVC制定了“层级”(tier) 和“等级”(level)。
+			tier只有main和high。
+			level有13级，如下所示：
+			这里写图片描述
+
+			不多说，直接给出怎么用。（supposed你用libx265编码）
+				ffmpeg -i input.mp4 -c:v libx265 -x265-params "profile=high:level=3.0" output.mp4

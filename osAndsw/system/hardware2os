@@ -1,0 +1,47 @@
+系统启动原理:
+	主板加电->电流启动主板自检程序->按顺序尝试启动项(bios)->主引导记录(mbr)->分区引导记录(pbr)->启动管理器->配置文件(bcd)->系统引导->系统程序->注册表->其它软件
+	电流启动主板自检程序:
+		检查各种硬件端口,包括磁盘...显示器...usb端口...等
+	按顺序尝试启动项:
+		启动项:
+			硬盘启动
+			usb启动
+			网络启动
+	主引导启动(mbr)/分区引导记录(pbr):
+		引导:
+			视为c语言中的指针,告诉bios程序,操作系统在什么地方
+			eg:
+				//方便说明,现实中有虚拟地址和真实地址等复杂概念,0x00ff和0xffff并不真的指向系统
+				磁盘地址0x00ff处的windows
+				磁盘地址0xffff处的linux
+	启动管理器:
+		操作系统的一部分,用来识别操作系统,和选择操作系统
+		eg:
+			安装了win10和debian,启动项管理器可以选择是win10系统还是debian系统
+	配置文件/系统引导/系统程序/注册表:
+		操作系统的一部分,运行操作系统接管cpu后最开始执行的内容
+	其它软件:
+		驱动程序...文件管理器...桌面程序(windows系列桌面/xfce4桌面/gnome桌面/debian桌面/ubuntu桌面等)...浏览器...文件编辑器...图片编辑器...ps/pr/au...等
+
+常见启动项管理器:
+	bootmgr->windows系统自带默认
+	grub->linux系统多用grub引导
+常见操作系统:
+	windows
+		win98
+		winxp
+		win7
+		win8.1
+		win10
+	unix/linux
+		unix
+			mac操作系统
+		linux
+			ubuntu
+			redhat
+			debian
+			centos
+			kail
+			uos
+			deepin
+			android

@@ -1,0 +1,12 @@
+/*
+module  vnkgt.com/golang_demo
+// 需求包或工具
+require(
+    golang.org/x/text
+)
+
+// 替换的工具或包
+replace(
+    golang.org/x/text => github.com/golang/text
+)
+*/

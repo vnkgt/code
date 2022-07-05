@@ -1,0 +1,37 @@
+Jade=>XRD分析软件
+===>XRD分析物相(化学组成,晶体结构)及含量
+        非晶体的峰较宽,晶体峰窄
+清空所有操作数据:
+    XRD图形窗口->鼠标右键->Erase all
+01.扣背底(可扣可不扣):
+    fit BG
+02.寻峰:
+    find peaks
+03.物相确定/对比pdf卡片:
+    search/match->右键->不选择含有"化学元素","物质类型"
+04.多相材料检测:
+    自动对比查找pdf->手动寻峰->再对比查找pdf
+    手动寻峰
+        手动区->peak paint cursor->鼠标右键划出峰的底部位置->图标S/M搜寻
+    寻峰时始终"无法找到确定的物质":
+        //2)或者3)选择一个即可
+        1)pdf retrieval
+        2)"第二框:输入目标物相的pdf_id"
+        3)"第三个框:输入目标物相的名字,eg:Fe2O3,显示所有相关的pdf卡片"
+        4)逐个点击pdf卡片,观察原XRD图像的峰拟合情况->找到最拟合的一项
+05.平滑曲线:
+    smooth all
+06.拟合/"用找到的pdf卡片叠加"与"原XRD图对比":
+    fit profit->右上条形框显示10%以下即为拟合度高
+    拟合不够好解决办法:
+        1)平滑曲线
+        2)只选择部分区域进行拟合
+        3)扣背底
+07.含量:
+    options->easy Quantitative->cal w%->show Grah显示多相的百分比
+08.结晶度:
+    report->peak profile report->勾选的为"非晶峰",选择非晶峰->crystalllinity为结晶度
+09.晶粒大小(谢乐公式,单位是埃):
+    report->size & strain plot->XS晶粒尺寸
+10.晶胞参数/对晶胞参数进行精修:
+    options->cell refinement->refine->vol晶胞体积

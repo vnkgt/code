@@ -1,0 +1,88 @@
+var urlPrefix = '//support.huaweicloud.com';
+var destUrl = getDestUrl(urlPrefix);
+if(destUrl){
+    analysisALink(urlPrefix,destUrl,true);
+}
+//检测url是否404 且跳转到对应的url上
+function checkLinkValid(url,destUrl,type,target){
+
+    var urlHttpCheck = new RegExp("http://support.huaweicloud.com");
+    if (urlHttpCheck.test(url)) {
+        var httpindex = url.indexOf("http");
+        url = url.substring(0, httpindex + 4) + "s" + url.substring(httpindex + 4, url.length);
+    }
+    $.ajax({
+        type: type ? type : 'GET', // 获取头信息，type=HEAD即可
+        url: url,
+        async:false,
+        complete: function (xhr, data) {
+            //如果访问的地址404 且指定地址存在
+            if (destUrl && xhr && xhr.status && xhr.status == 404) {
+                url = destUrl;
+            }
+            if(target){
+                window.open(url,"_blank");
+            }else{
+                window.open(url);
+            }
+        }
+    });
+}
+//生成有效地址
+function getDestUrl(urlPrefix){
+    var destUrl;
+    var url = window.location.href;
+    var destStr;
+    var lastIndex;
+    var lastIndexOfdot;
+    //如果是英文网站则加
+    if(url.indexOf('en-us')>-1){
+        urlPrefix = urlPrefix+"/en-us";
+    }
+    //分析目标地址url
+    if(url && url.indexOf(".html")>-1){
+        lastIndex = url.lastIndexOf("\/"); 
+        lastIndexOfdot = url.lastIndexOf(".html"); 
+        destStr = url.substring(lastIndex + 1, lastIndexOfdot);
+        destUrl = urlPrefix+"/"+destStr+"/index.html";
+    }
+    return destUrl;
+}
+//检测url格式是否合法
+function isUrl(url){
+    //url 正则
+    var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+    var objExp = new RegExp(Expression);
+    if(url && objExp.test(url)){
+        return true;
+    }else{
+        return false;
+    }
+}
+/**
+* 分析页面a链接跳转地址，页面跳转地址404 跳转到指定的url中
+* 依赖于jquery  访问的地址需要支持跨域
+**/
+function analysisALink(urlPrefix,destUrl,flag,type){
+    // a链接需要跳转的地址
+    var href = '';
+    // a 链接打开方式
+   var target = '';
+    if(flag && urlPrefix && destUrl){
+        $(document).on("click", "a[href*='"+urlPrefix+"']", function (event) {
+            var ahref = $(event.target).closest('a').attr('href');
+            var aTarget = $(event.target).closest('a').attr('target');
+            if(event && ahref){
+                //获取a 链接打开方式
+                target = aTarget;
+                href = ahref;
+                //1点击事件的不需要拦击处理 2、url不合法不拦截
+                if(isUrl(href) && !event.target.onclick){
+                    //拦截跳转
+                    event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+                    checkLinkValid(href,destUrl,type,target);
+                }
+            }
+        });
+    }
+}

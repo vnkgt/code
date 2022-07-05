@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3伪选择器</title>
+	<style>
+		.boxA .boxB:hover{
+			color:yellow;
+		}
+		.boxC:before{
+			content: "<FUCK before!!!>"
+		}
+		.boxD:after{
+			content: "<FUCK after!!!>"
+		}
+	</style>
+</head>
+<body>
+	<div class="boxA">
+		first
+		<div class="boxB">
+			seconde
+		</div>
+	</div>
+	<div class="boxC">
+		伪标签选择器before
+	</div>
+	<div class="boxD">
+		伪标签选择器after
+	</div>
+</body>
+</html>
