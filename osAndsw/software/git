@@ -285,7 +285,7 @@ git安装
 		git pull origin master --allow-unrelated-histories
 	2)每次push时输入name && password:
 		//可以用来解决fatal: Authentication failed for
-		git credential-manager uninstall
+		git credential-manager-core uninstall
 	2)解决push需要每次输入name && password:
 		//生成一个本地文本用来记录name && password,保存到用户文件夹中的.git-credentials
 		git config --global credential.helper store
