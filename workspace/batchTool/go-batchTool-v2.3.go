@@ -211,11 +211,11 @@ func dirHandleMenu(srcPath string) error {
 	case 4:
 		menu04(files)
 	case 5:
-		menu06(files)
+		menu05(files)
 	case 6:
-		menu07(files)
+		menu06(files)
 	case 7:
-		menu08(dirs)
+		menu07(dirs)
 	default:
 		fmt.Println("没有该选项...")
 	}
@@ -313,18 +313,8 @@ func menu04(files []string) {
 	}
 }
 
-//[05]修改一个文件的md5值
-func menu05() {
-	var path string
-	fmt.Println("输入要修该md5的文件路径")
-	fmt.Scan(&path)
-	fmt.Println("\tbefore change md5...", showMd5(path))
-	changeMd5(path) //修改md5
-	fmt.Println("\tafter change md5...", showMd5(path))
-}
-
 //[06]修改所有文件的md5值
-func menu06(files []string) {
+func menu05(files []string) {
 	var flag int
 	fmt.Printf("是否显示文件修改前后的md5?(数字1开启,其它关闭)\n\t=>")
 	fmt.Scan(&flag)
@@ -342,7 +332,7 @@ func menu06(files []string) {
 }
 
 //[07]将所有文件移动到同一个路径
-func menu07(files []string) {
+func menu06(files []string) {
 	var aimpath string //移动的目标文件夹
 	fmt.Printf("所有文件要移动到哪个文件夹(不存在的话需要自行创建)...\n\t=>")
 	fmt.Scan(&aimpath)
@@ -368,7 +358,7 @@ func menu07(files []string) {
 }
 
 //[08]删除该文件下的所有空文件夹
-func menu08(dirs []string) {
+func menu07(dirs []string) {
 	emptydir := make([]string, 0) //空文件夹的路径
 	for index := range dirs {
 		path := dirs[index]
