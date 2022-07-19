@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "variant": "c",
+        "string.h": "c",
+        "io.h": "c",
+        "file.h": "c",
+        "stdio.h": "c",
+        "types.h": "c"
+    }
+}

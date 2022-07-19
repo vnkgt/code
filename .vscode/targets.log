@@ -1,0 +1,283 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make.exe: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.2.1
+# Built for i686-w64-mingw32
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Mon Jul 18 22:30:02 2022
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# automatic
+?F = $(notdir $?)
+# default
+.SHELLFLAGS := -c
+# makefile
+MAKEFLAGS = pqrR
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+HOMEDRIVE = C:
+# automatic
+@F = $(notdir $@)
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# makefile
+CURDIR := d:/code
+# default
+SHELL := D:/sw/developTool/git-v2.37.0-portable/bin/sh.exe
+# environment
+WINDIR = C:\Windows
+# environment
+VSCODE_NLS_CONFIG = {"locale":"zh-cn","availableLanguages":{"*":"zh-cn"},"_languagePackId":"1d735750dbb1b9066c7513078396ba0f.zh-cn","_translationsConfigFile":"C:\\Users\\vnkgt\\AppData\\Roaming\\Code\\clp\\1d735750dbb1b9066c7513078396ba0f.zh-cn\\tcf.json","_cacheRoot":"C:\\Users\\vnkgt\\AppData\\Roaming\\Code\\clp\\1d735750dbb1b9066c7513078396ba0f.zh-cn","_resolvedLanguagePackCoreLocation":"C:\\Users\\vnkgt\\AppData\\Roaming\\Code\\clp\\1d735750dbb1b9066c7513078396ba0f.zh-cn\\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a","_corruptedFile":"C:\\Users\\vnkgt\\AppData\\Roaming\\Code\\clp\\1d735750dbb1b9066c7513078396ba0f.zh-cn\\corrupted.info","_languagePackSupport":true}
+# environment
+ONEDRIVE = C:\Users\vnkgt\OneDrive
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+# makefile
+MAKEFILE_LIST := 
+# environment
+FPS_BROWSER_USER_PROFILE_STRING = Default
+# environment
+TMP = C:\Users\vnkgt\AppData\Local\Temp
+# environment
+NODEJS_HOME = D:\sw\developTool\nodejs-v16.15.1-win-x64
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PROGRAMDATA = C:\ProgramData
+# environment
+VSCODE_CWD = D:\sw\vscode-v1.69.1
+# environment
+GOPROXY = https://goproxy.cn,direct
+# default
+MAKE_HOST := i686-w64-mingw32
+# environment
+PATH = D:\sw\developTool\golang-v1.18.3-win-amd64\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;D:\sw\developTool\git-v2.37.0-portable\bin;D:\sw\developTool\ffmpeg_2022.05.26-full_build\bin;D:\sw\developTool\python-v3.10.5-embed-amd64;D:\sw\developTool\python-v3.10.5-embed-amd64\Scripts;D:\sw\developTool\llvm-mingw-20220323-msvcrt-i686\bin;D:\sw\developTool\golang-v1.18.3-win-amd64\pkg\tool\windows_amd64;D:\sw\developTool\nodejs-v16.15.1-win-x64;C:\Users\vnkgt\AppData\Local\Microsoft\WindowsApps;
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# environment
+USERPROFILE = C:\Users\vnkgt
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+GOPATH = D:\sw\developTool\golang-v1.18.3-win-amd64\goPath
+# environment
+NUMBER_OF_PROCESSORS = 16
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync
+# automatic
+%F = $(notdir $%)
+# environment
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_5388_WNNLEKHBIICGNIFD
+# environment
+COMPUTERNAME = R9000X-3050TI
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# default
+.LOADED := 
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERNAME = vnkgt
+# environment
+PUBLIC = C:\Users\Public
+# environment
+GOMODCACHE = D:\sw\developTool\golang-v1.18.3-win-amd64\goPath\pkg\mod
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\vnkgt\AppData\Roaming\Code\CachedData\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# environment
+LOGONSERVER = \\R9000X-3050TI
+# environment
+ONEDRIVECONSUMER = C:\Users\vnkgt\OneDrive
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+USERDOMAIN = r9000x-3050ti
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# default
+MAKE_VERSION := 4.2.1
+# makefile
+.DEFAULT_GOAL := 
+# environment
+GOROOT = D:\sw\developTool\golang-v1.18.3-win-amd64
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# environment
+LOCALAPPDATA = C:\Users\vnkgt\AppData\Local
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := make.exe
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+PROCESSOR_IDENTIFIER = AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD
+# environment
+OS = Windows_NT
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\98c961e88bb6abf16dddefbfb2912675-1.69.1-main-sock
+# environment
+HOMEPATH = \Users\vnkgt
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# environment
+PROMPT = $P$G
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+SYSTEMROOT = C:\Windows
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# environment
+NODE_GLOBAL = D:\sw\developTool\nodejs-v16.15.1-win-x64\node_global
+# automatic
++F = $(notdir $+)
+# environment
+APPDATA = C:\Users\vnkgt\AppData\Roaming
+# environment
+TEMP = C:\Users\vnkgt\AppData\Local\Temp
+# environment
+COMSPEC = C:\Windows\system32\cmd.exe
+# default
+MAKEFILES := 
+# environment
+NODE_CACHE = %node_home%\node_cache
+# automatic
+<F = $(notdir $<)
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+SYSTEMDRIVE = C:
+# environment
+SESSIONNAME = Console
+# environment
+PROCESSOR_REVISION = 5000
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+PROCESSOR_LEVEL = 25
+# environment
+FPS_BROWSER_APP_PROFILE_STRING = Internet Explorer
+# environment
+VSCODE_PID = 5388
+# environment
+USERDOMAIN_ROAMINGPROFILE = r9000x-3050ti
+# variable set hash-table stats:
+# Load=96/1024=9%, Rehash=0, Collisions=16/113=14%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (key d:/code, mtime 1657979780): 12 files, no impossibilities.
+
+# 12 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+makefile.mak:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+GNUmakefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
+
+# files hash-table stats:
+# Load=7/1024=1%, Rehash=0, Collisions=0/16=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 19 / storage = 162 B / avg = 8 B
+# current buf: size = 8174 B / used = 162 B / count = 19 / avg = 8 B
+
+# strcache performance: lookups = 21 / hit rate = 9%
+# hash-table stats:
+# Load=19/8192=0%, Rehash=0, Collisions=1/21=5%
+# Finished Make data base on Mon Jul 18 22:30:02 2022
+
+ 
